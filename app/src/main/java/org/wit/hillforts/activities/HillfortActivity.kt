@@ -7,27 +7,28 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import org.wit.hillforts.R
+import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.HillfortModel
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
   var hillfort = HillfortModel()
-  val hillforts = ArrayList<HillfortModel>()
+  lateinit var app: MainApp
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_hillfort)
-    info("Hillfort acrivity started")
+    app = application as MainApp
 
     btnAdd.setOnClickListener() {
-      val hillfortName = HillfortName.text.toString()
-      val hillfortDescription = HillfortDescription.text.toString()
-      if (hillfortName.isNotEmpty()) {
+      hillfort.name = HillfortName.text.toString()
+      hillfort.description = HillfortDescription.text.toString()
+      if (hillfort.name.isNotEmpty()) {
+        app.hillforts.add(hillfort.copy())
         info("Add Button Pressed: $hillfort")
-        hillfort.name = hillfortName
-        hillfort.description = hillfortDescription
-        hillforts.add(hillfort.copy())
-        info("$hillforts")
+        for (i in app.hillforts.indices) {
+          info("Hillfort[$i]:${app.hillforts[i]}")
+        }
       }
       else {
         toast ("Please enter all details")
