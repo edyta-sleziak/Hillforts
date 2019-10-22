@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Hillforts</string>
+    <string name="enter_name"> Please enter name of hillfort </string>
     <string name="button_addHillfort">Add hillfort</string>
+    <string name="button_editHillfort">Save Changes</string>
     <string name="hint_hillfortName">Name</string>
     <string name="hint_hillfortDescription">Description</string>
     <string name="menu_addNewHillfort">Add</string>

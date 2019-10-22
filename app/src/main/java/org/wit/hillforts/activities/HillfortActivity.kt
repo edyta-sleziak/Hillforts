@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_hillfort.*
+import kotlinx.android.synthetic.main.activity_hillfort.HillfortDescription
+import kotlinx.android.synthetic.main.activity_hillfort.HillfortName
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
@@ -22,22 +24,32 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     setContentView(R.layout.activity_hillfort)
     app = application as MainApp
 
+    var edit = false
+
     toolbarHillfort.title = title
     setSupportActionBar(toolbarHillfort)
+
+    if (intent.hasExtra("hillfort_edit")) {
+      edit = true
+      hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
+      HillfortName.setText(hillfort.name)
+      HillfortDescription.setText(hillfort.description)
+      btnAdd.setText(R.string.button_editHillfort)
+    }
 
     btnAdd.setOnClickListener() {
       hillfort.name = HillfortName.text.toString()
       hillfort.description = HillfortDescription.text.toString()
-      if (hillfort.name.isNotEmpty()) {
-        app.hillforts.add(hillfort.copy())
-        info("Add Button Pressed: $hillfort")
-        for (i in app.hillforts.indices) {
-          info("Hillfort[$i]:${app.hillforts[i]}")
-        }
-      setResult(AppCompatActivity.RESULT_OK)
-      finish()
+      if (hillfort.name.isEmpty()) {
+        toast(R.string.enter_name)
       } else {
-        toast ("Please enter all details")
+        if(edit) {
+          app.hillforts.update(hillfort.copy())
+        } else {
+          app.hillforts.create(hillfort.copy())
+        }
+        setResult(AppCompatActivity.RESULT_OK)
+        finish()
       }
     }
 
