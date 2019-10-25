@@ -7,5 +7,8 @@
     <string name="hint_hillfortDescription">Description</string>
     <string name="menu_addNewHillfort">Add</string>
     <string name="menu_cancel">Cancel</string>
+    <string name="button_addImage"> Add Image </string>
+    <string name="select_hillfort_image"> Select Image </string>
+
 
 </resources>
