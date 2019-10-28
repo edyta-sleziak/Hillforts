@@ -11,18 +11,30 @@
       android:layout_height="wrap_content"
       android:padding="16dp">
 
+    <ImageView
+        android:id="@+id/imageIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/button_updateImage" />
+
     <TextView
         android:id="@+id/HillfortName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imageIcon"
         android:textSize="30sp" />
 
     <TextView
         android:id="@+id/HillfortDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/HillfortName" />
+        android:layout_below="@id/HillfortName"
+        android:layout_toEndOf="@+id/imageIcon"/>
+
 
   </RelativeLayout>
 </androidx.cardview.widget.CardView>

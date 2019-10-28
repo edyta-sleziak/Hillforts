@@ -8,20 +8,20 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortDescription
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortName
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.*
 import org.wit.hillforts.R
 import org.wit.hillforts.helpers.readImage
 import org.wit.hillforts.helpers.readImageFromPath
 import org.wit.hillforts.helpers.showImagePicker
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.HillfortModel
+import org.wit.hillforts.models.Location
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
   var hillfort = HillfortModel()
   val IMAGE_REQUEST = 1
+  val LOCATION_REQUEST = 2
   lateinit var app: MainApp
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,12 +41,25 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       showImagePicker(this, IMAGE_REQUEST)
     }
 
+    hillfortLocation.setOnClickListener {
+      val location = Location(52.245696, -7.139102, 15f)
+      if (hillfort.zoom != 0f) {
+        location.lat =  hillfort.lat
+        location.lng = hillfort.lng
+        location.zoom = hillfort.zoom
+      }
+      startActivityForResult(intentFor<MapActivity>().putExtra("location", location), LOCATION_REQUEST)
+    }
+
     if (intent.hasExtra("hillfort_edit")) {
       edit = true
       hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
       HillfortName.setText(hillfort.name)
       HillfortDescription.setText(hillfort.description)
       HillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
+      if(hillfort.image != null) {
+        chooseImage.setText(R.string.button_updateImage)
+      }
       btnAdd.setText(R.string.button_editHillfort)
     }
 
@@ -88,6 +101,15 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         if (data != null) {
           hillfort.image = data.getData().toString()
           HillfortImage.setImageBitmap(readImage(this, resultCode, data))
+          chooseImage.setText(R.string.button_updateImage)
+        }
+      }
+      LOCATION_REQUEST -> {
+        if(data != null) {
+          val location = data.extras?.getParcelable<Location>("location")!!
+          hillfort.lat = location.lat
+          hillfort.lng = location.lng
+          hillfort.zoom = location.zoom
         }
       }
     }
