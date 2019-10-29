@@ -98,6 +98,30 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp"/>
 
+                <Switch
+                    android:id="@+id/HillfortVisited"
+                    android:hint="@string/hint_visited"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp" />
+
+                <TextView
+                    android:id="@+id/HillfortVisitedDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp"
+                    android:hint="@string/hint_visitedDate"
+                    android:layout_gravity="center" />
+<!--
+<DatePicker-->
+<!--                    android:id="@+id/HillfortVisitedDate"-->
+<!--                    android:layout_width="330dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/cardview_light_background"-->
+<!--                    android:datePickerMode="calendar"-->
+<!--                    android:hint="@string/hint_visitedDate"-->
+<!--                    android:layout_gravity="center" />-->
+
                 <EditText
                     android:id="@+id/HillfortNotes"
                     android:layout_width="match_parent"
@@ -124,6 +148,8 @@
                     android:text="@string/button_addHillfort"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
+
+
 
             </LinearLayout>
         </ScrollView>

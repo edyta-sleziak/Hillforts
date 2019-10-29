@@ -1,10 +1,12 @@
 package org.wit.hillforts.activities
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortDescription
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortName
@@ -16,6 +18,7 @@ import org.wit.hillforts.helpers.showImagePicker
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.models.Location
+import java.util.*
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
@@ -23,6 +26,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
   val IMAGE_REQUEST = 1
   val LOCATION_REQUEST = 2
   lateinit var app: MainApp
+
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -32,6 +36,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     chooseImage.setOnClickListener {
       info ("Select image")
     }
+    val datepicker = Calendar.getInstance()
+    val year = datepicker.get(Calendar.YEAR)
+    val month = datepicker.get(Calendar.MONTH)
+    val day = datepicker.get(Calendar.DAY_OF_MONTH )
 
     app = application as MainApp
 
@@ -39,6 +47,15 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     chooseImage.setOnClickListener {
       showImagePicker(this, IMAGE_REQUEST)
+    }
+
+    HillfortVisitedDate.setOnClickListener {
+      val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { DatePicker, year, month, dayOfMonth ->
+        HillfortVisitedDate.setText("$dayOfMonth / $month / $year")
+      }, day, month, year)
+      datePickerDialog.show()
+      var date = datePickerDialog.toString()
+      hillfort.visitedDate = date
     }
 
     hillfortLocation.setOnClickListener {
@@ -57,6 +74,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       HillfortName.setText(hillfort.name)
       HillfortDescription.setText(hillfort.description)
       HillfortNotes.setText(hillfort.notes)
+      HillfortVisited.setChecked(hillfort.visited)
       HillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
       if(hillfort.image != null) {
         chooseImage.setText(R.string.button_updateImage)
@@ -68,6 +86,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       hillfort.name = HillfortName.text.toString()
       hillfort.description = HillfortDescription.text.toString()
       hillfort.notes = HillfortNotes.text.toString()
+      hillfort.visited = HillfortVisited.isChecked
       if (hillfort.name.isEmpty()) {
         toast(R.string.enter_name)
       } else {

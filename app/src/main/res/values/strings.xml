@@ -14,6 +14,8 @@
   <string name="select_hillfort_image"> Select Image </string>
   <string name="button_setLocation"> Set location </string>
   <string name="title_activity_map">Map</string>
+  <string name="hint_visited">Site visited?</string>
+  <string name="hint_visitedDate">Select date </string>
 
 
 </resources>
