@@ -56,6 +56,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
       HillfortName.setText(hillfort.name)
       HillfortDescription.setText(hillfort.description)
+      HillfortNotes.setText(hillfort.notes)
       HillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
       if(hillfort.image != null) {
         chooseImage.setText(R.string.button_updateImage)
@@ -66,6 +67,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     btnAdd.setOnClickListener() {
       hillfort.name = HillfortName.text.toString()
       hillfort.description = HillfortDescription.text.toString()
+      hillfort.notes = HillfortNotes.text.toString()
       if (hillfort.name.isEmpty()) {
         toast(R.string.enter_name)
       } else {
@@ -88,6 +90,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
       R.id.item_cancel -> {
+        finish()
+      }
+      R.id.item_delete -> {
+        app.hillforts.delete(hillfort)
         finish()
       }
     }

@@ -98,6 +98,20 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp"/>
 
+                <EditText
+                    android:id="@+id/HillfortNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints=""
+                    android:hint="@string/hint_hillfortNotes"
+                    android:inputType="text"
+                    android:maxLength="2500"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
                 <Button
                     android:id="@+id/btnAdd"
                     android:layout_width="match_parent"
