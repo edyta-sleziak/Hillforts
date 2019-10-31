@@ -32,7 +32,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_hillfort)
     toolbarHillfort.title = title
-    setSupportActionBar(toolbarOptions)
+    setSupportActionBar(toolbarHillfort)
     chooseImage.setOnClickListener {
       info ("Select image")
     }
