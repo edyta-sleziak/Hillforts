@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_splasscreen"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingHorizontal="30dp"
+    android:paddingBottom="80dp">
+
+  <EditText
+      android:id="@+id/email"
+      android:layout_width="match_parent"
+      android:layout_height="45dp"
+      android:layout_margin="8dp"
+      android:background="@android:color/white"
+      android:hint="@string/hint_emailaddress"
+      android:inputType="textEmailAddress"
+      android:maxLength="25"
+      android:maxLines="1"
+      android:paddingHorizontal="20dp"
+      android:textColor="@color/colorPrimaryDark"
+      android:textSize="14sp" />
+
+  <EditText
+      android:id="@+id/password"
+      android:layout_width="match_parent"
+      android:layout_height="45dp"
+      android:layout_margin="8dp"
+      android:background="@android:color/white"
+      android:hint="@string/hint_password"
+      android:inputType="textPassword"
+      android:maxLength="25"
+      android:maxLines="1"
+      android:paddingHorizontal="20dp"
+      android:textColor="@color/colorPrimaryDark"
+      android:textSize="14sp" />
+
+  <Button
+      android:id="@+id/login"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="8dp"
+      android:background="@color/colorAccent"
+      android:text="@string/btn_login"
+      android:textColor="@android:color/white"
+      android:textSize="16sp" />
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:text="@string/hint_createaccount"
+      android:textColor="@android:color/white"
+      android:textSize="20sp" />
+
+  <Button
+      android:id="@+id/signup"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="8dp"
+      android:background="@color/colorAccent"
+      android:text="@string/btn_signup"
+      android:textColor="@android:color/white"
+      android:textSize="16sp" />
+
+</LinearLayout>

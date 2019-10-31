@@ -10,6 +10,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortDescription
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortName
+import kotlinx.android.synthetic.main.activity_stats.*
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
 import org.wit.hillforts.helpers.readImage
@@ -27,12 +28,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
   val LOCATION_REQUEST = 2
   lateinit var app: MainApp
 
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_hillfort)
     toolbarHillfort.title = title
-    setSupportActionBar(toolbarHillfort)
+    setSupportActionBar(toolbarOptions)
     chooseImage.setOnClickListener {
       info ("Select image")
     }
@@ -87,6 +87,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
       hillfort.description = HillfortDescription.text.toString()
       hillfort.notes = HillfortNotes.text.toString()
       hillfort.visited = HillfortVisited.isChecked
+      hillfort.userId = app.users.getLoggedUser()!!.id
       if (hillfort.name.isEmpty()) {
         toast(R.string.enter_name)
       } else {

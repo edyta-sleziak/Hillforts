@@ -32,6 +32,14 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
     return hillforts
   }
 
+  override fun findUsersHillforts(userId: Long): List<HillfortModel> {
+    return hillforts.filter { it.userId == userId }
+  }
+
+  override fun findVisitedHillforts(userId: Long): List<HillfortModel> {
+    return hillforts.filter { it.userId == userId }
+  }
+
   override fun create(hillfort: HillfortModel) {
     hillfort.id = generateRandomId()
     hillforts.add(hillfort)
@@ -68,3 +76,4 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
     serialize()
   }
 }
+

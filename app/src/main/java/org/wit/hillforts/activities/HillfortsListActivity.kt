@@ -6,6 +6,8 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_hillforts_list.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
 import org.wit.hillforts.R
@@ -13,7 +15,7 @@ import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.HillfortModel
 
 
-class HillfortsListActivity : AppCompatActivity(), HillfortListener {
+class HillfortsListActivity : AppCompatActivity(), HillfortListener, AnkoLogger {
 
   lateinit var app: MainApp
 
@@ -38,6 +40,9 @@ class HillfortsListActivity : AppCompatActivity(), HillfortListener {
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
       R.id.item_add -> startActivityForResult<HillfortActivity>(0)
+      R.id.item_stats -> startActivityForResult<StatsActivity>(0)
+      R.id.item_settings -> startActivityForResult<SettingsActivity>(0)
+      R.id.item_logout -> logout()
     }
     return super.onOptionsItemSelected(item)
   }
@@ -52,12 +57,17 @@ class HillfortsListActivity : AppCompatActivity(), HillfortListener {
   }
 
   private fun loadHillforts() {
-    showHillforts(app.hillforts.findAll())
+    showHillforts(app.hillforts.findUsersHillforts(app.users.getLoggedUser()!!.id))
   }
 
   fun showHillforts (hillforts: List<HillfortModel>) {
     recyclerView.adapter = HillfortAdapter(hillforts, this)
     recyclerView.adapter?.notifyDataSetChanged()
+  }
+
+  fun logout() {
+    app.users.setLoggedUser(null)
+    startActivityForResult<LoginActivity>(0)
   }
 }
 
