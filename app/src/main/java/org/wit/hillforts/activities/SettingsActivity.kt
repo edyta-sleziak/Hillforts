@@ -9,6 +9,8 @@ import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortDescription
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortName
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.activity_settings.toolbarOptions
+import kotlinx.android.synthetic.main.activity_stats.*
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
 import org.wit.hillforts.helpers.readImage

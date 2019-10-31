@@ -34,6 +34,14 @@ class StatsActivity : AppCompatActivity(), AnkoLogger {
 
     app = application as MainApp
 
+    var usersHillforts = app.hillforts.findUsersHillforts(app.users.getLoggedUser()!!.id).size
+    progressBar.max = usersHillforts
+    var visitedHillforts = app.hillforts.findVisitedHillforts(app.users.getLoggedUser()!!.id).size
+    totalUsersHillforts.text = "$usersHillforts"
+    totalVisitedHillforts.text = "$visitedHillforts"
+    progressBar.progress = visitedHillforts
+
+
   }
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -37,7 +37,8 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
   }
 
   override fun findVisitedHillforts(userId: Long): List<HillfortModel> {
-    return hillforts.filter { it.userId == userId }
+    var allHillforts =  hillforts.filter { it.userId == userId }
+    return allHillforts.filter { it.visited == true }
   }
 
   override fun create(hillfort: HillfortModel) {
@@ -57,6 +58,9 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
       foundHillfort.lat = hillfort.lat
       foundHillfort.lng = hillfort.lng
       foundHillfort.zoom = hillfort.zoom
+      foundHillfort.visited = hillfort.visited
+      foundHillfort.visitedDate = hillfort.visitedDate
+      foundHillfort.userId = hillfort.userId
       serialize()
     }
   }

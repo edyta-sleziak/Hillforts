@@ -112,15 +112,6 @@
                     android:layout_margin="8dp"
                     android:hint="@string/hint_visitedDate"
                     android:layout_gravity="center" />
-<!--
-<DatePicker-->
-<!--                    android:id="@+id/HillfortVisitedDate"-->
-<!--                    android:layout_width="330dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@color/cardview_light_background"-->
-<!--                    android:datePickerMode="calendar"-->
-<!--                    android:hint="@string/hint_visitedDate"-->
-<!--                    android:layout_gravity="center" />-->
 
                 <EditText
                     android:id="@+id/HillfortNotes"

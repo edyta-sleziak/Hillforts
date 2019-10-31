@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
 
     app = application as MainApp
 
+
     login.setOnClickListener() {
       user.email = email.text.toString()
       user.password = password.text.toString()

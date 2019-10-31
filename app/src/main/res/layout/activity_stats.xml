@@ -30,29 +30,64 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp">
 
       <TextView
           android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:gravity="center"
+          android:layout_height="45dp"
+          android:layout_margin="8dp"
+          android:layout_gravity="center"
+          android:textSize="28sp"
           android:text="@string/drawer_stats"
           android:textColor="@android:color/black" />
 
       <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content" />
+          android:id="@+id/usersHillforts"
+          android:layout_width="match_parent"
+          android:layout_height="45dp"
+          android:layout_margin="8dp"
+          android:text="@string/Users_hillforts" />
 
       <TextView
+          android:id="@+id/totalUsersHillforts"
           android:layout_width="wrap_content"
-          android:layout_height="wrap_content" />
+          android:layout_height="wrap_content"
+          android:layout_gravity="right"
+          android:layout_margin="8dp"
+          android:text="@string/totalUsersHillforts" />
+
+      <TextView
+          android:id="@+id/usersVisited"
+          android:layout_width="match_parent"
+          android:layout_height="45dp"
+          android:layout_margin="8dp"
+          android:text="@string/Visited_hillforts" />
+
+      <TextView
+        android:id="@+id/totalVisitedHillforts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="8dp"
+        android:text="@string/totalVisitedHillforts" />
+
+      <TextView
+          android:id="@+id/progress"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="8dp"
+          android:text="@string/progress" />
 
       <ProgressBar
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content" />
+          android:id="@+id/progressBar"
+          style="?android:attr/progressBarStyleHorizontal"
+          android:layout_width="349dp"
+          android:layout_height="14dp" />
 
     </LinearLayout>
   </RelativeLayout>
