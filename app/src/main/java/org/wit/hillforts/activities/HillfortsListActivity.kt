@@ -57,7 +57,7 @@ class HillfortsListActivity : AppCompatActivity(), HillfortListener, AnkoLogger 
   }
 
   private fun loadHillforts() {
-    showHillforts(app.hillforts.findAll())
+    showHillforts(app.hillforts.findUsersHillforts(app.users.getLoggedUser()!!.id))
   }
 
   fun showHillforts (hillforts: List<HillfortModel>) {
