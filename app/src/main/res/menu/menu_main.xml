@@ -8,4 +8,19 @@
       android:title="@string/menu_addNewHillfort"
       app:showAsAction="always" />
 
+  <group>
+    <item
+        android:id="@+id/item_settings"
+        android:title="@string/drawer_settings">
+    </item>
+    <item
+        android:id="@+id/item_stats"
+        android:title="@string/drawer_stats">
+    </item>
+    <item
+        android:id="@+id/item_logout"
+        android:title="@string/drawer_logout">
+    </item>
+  </group>
+
 </menu>

@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name">Hillforts</string>
   <string name="enter_name"> Please enter name of hillfort </string>
+  <string name="enter_credentials"> Please provide email and password </string>
   <string name="button_addHillfort">Add hillfort</string>
   <string name="button_editHillfort">Save Changes</string>
   <string name="hint_hillfortName">Name</string>
@@ -26,6 +27,9 @@
   <string name="password_change">Change your password</string>
   <string name="hint_old_password">Enter your old password</string>
   <string name="hint_new_password">Enter your new password</string>
+  <string name="toast_incorrectpassword">Password is not correct. Please try again</string>
+  <string name="toast_incorrectemail">E-mail address not recognised. Please create an account</string>
+
 
 
 

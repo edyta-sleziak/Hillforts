@@ -11,6 +11,7 @@ data class HillfortModel(var id: Long = 0,
                          var lng: Double = 0.0,
                          var zoom: Float = 0f,
                          var image: String = "",
+                         var userId: Long = 0,
                          var notes: String = "") : Parcelable
 @Parcelize
 data class Location(var lat: Double = 0.0,

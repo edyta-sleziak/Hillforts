@@ -8,6 +8,7 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortDescription
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortName
+import kotlinx.android.synthetic.main.activity_stats.*
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
 import org.wit.hillforts.helpers.readImage
@@ -28,7 +29,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_hillfort)
     toolbarHillfort.title = title
-    setSupportActionBar(toolbarHillfort)
+    setSupportActionBar(toolbarOptions)
     chooseImage.setOnClickListener {
       info ("Select image")
     }

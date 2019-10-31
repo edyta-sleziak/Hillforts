@@ -68,3 +68,4 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
     serialize()
   }
 }
+

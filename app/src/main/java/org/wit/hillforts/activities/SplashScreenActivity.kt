@@ -14,7 +14,7 @@ class SplashScreenActivity : AppCompatActivity() {
       override fun run() {
         try {
           Thread.sleep(5000)
-          startActivity(Intent(baseContext, HillfortsListActivity::class.java))
+          startActivity(Intent(baseContext, LoginActivity::class.java))
         } catch (e: Exception) {
           e.printStackTrace()
         }
