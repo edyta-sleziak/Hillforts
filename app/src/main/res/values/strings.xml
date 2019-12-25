@@ -37,7 +37,7 @@
   <string name="totalVisitedHillforts">$ TotalVisited</string>
   <string name="progress">Your progress:</string>
   <string name="enter_credentials">Please provide e-mail address and password</string>
-  <string name="title_activity_hillfrots_maps">HillfrotsMapsActivity</string>
+  <string name="title_activity_hillfrots_maps">Map</string>
 
 
 </resources>
