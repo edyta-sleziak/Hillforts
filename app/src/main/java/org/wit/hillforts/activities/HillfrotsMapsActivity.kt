@@ -2,7 +2,10 @@ package org.wit.hillforts.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import org.wit.hillforts.R
 import kotlinx.android.synthetic.main.activity_hillfrots_maps.*
 import kotlinx.android.synthetic.main.activity_map.*
@@ -54,6 +57,12 @@ class HillfrotsMapsActivity : AppCompatActivity() {
 
   fun configureMap() {
     map.uiSettings.setZoomControlsEnabled(true)
+    app.hillforts.findAll().forEach {
+      val loc = LatLng(it.lat, it.lng)
+      val options = MarkerOptions().title(it.name).position(loc)
+      map.addMarker(options).tag = it.id
+      map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
+    }
   }
 
 }
