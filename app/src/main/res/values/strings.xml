@@ -38,6 +38,9 @@
   <string name="progress">Your progress:</string>
   <string name="enter_credentials">Please provide e-mail address and password</string>
   <string name="title_activity_hillfrots_maps">Map</string>
+  <string name="hillfort_image_placeholder">Hillfort Image</string>
+  <string name="hillfort_title_placeholder">Hillfort Title</string>
+  <string name="hillfort_description_placeholder">Hillfort Description</string>
 
 
 </resources>

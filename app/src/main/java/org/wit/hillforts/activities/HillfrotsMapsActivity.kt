@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import org.wit.hillforts.R
 import kotlinx.android.synthetic.main.activity_hillfrots_maps.*
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.content_hillfrots_maps.*
 import org.wit.hillforts.main.MainApp
 
 
-class HillfrotsMapsActivity : AppCompatActivity() {
+class HillfrotsMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
   lateinit var app: MainApp
   lateinit var map: GoogleMap
 
@@ -62,7 +63,13 @@ class HillfrotsMapsActivity : AppCompatActivity() {
       val options = MarkerOptions().title(it.name).position(loc)
       map.addMarker(options).tag = it.id
       map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
+      map.setOnMarkerClickListener(this)
     }
+  }
+
+  override fun onMarkerClick(marker: Marker): Boolean {
+    currentName.text = marker.title
+    return false
   }
 
 }
