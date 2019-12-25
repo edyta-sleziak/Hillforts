@@ -42,6 +42,7 @@ class HillfortsListActivity : AppCompatActivity(), HillfortListener, AnkoLogger 
       R.id.item_add -> startActivityForResult<HillfortActivity>(0)
       R.id.item_stats -> startActivityForResult<StatsActivity>(0)
       R.id.item_settings -> startActivityForResult<SettingsActivity>(0)
+      R.id.item_map -> startActivityForResult<HillfrotsMapsActivity>(0)
       R.id.item_logout -> logout()
     }
     return super.onOptionsItemSelected(item)

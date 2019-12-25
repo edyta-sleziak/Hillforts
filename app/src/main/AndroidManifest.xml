@@ -14,35 +14,26 @@
       android:supportsRtl="true"
       android:theme="@style/AppTheme"
       tools:ignore="GoogleAppIndexingWarning">
+    <activity
+        android:name=".activities.HillfrotsMapsActivity"
+        android:label="@string/title_activity_hillfrots_maps"
+        android:theme="@style/AppTheme.NoActionBar"></activity>
+    <activity
+        android:name=".activities.SplashScreenActivity"
+        android:noHistory="true"
+        android:theme="@style/SplashScreen">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
 
-      <activity
-          android:name=".activities.SplashScreenActivity"
-          android:noHistory="true"
-          android:theme="@style/SplashScreen">
-        <intent-filter>
-          <action android:name="android.intent.action.MAIN" />
-          <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-      </activity>
-      <activity
-          android:name=".activities.HillfortsListActivity">
-      </activity>
-      <activity
-          android:name=".activities.HillfortActivity">
-      </activity>
-      <activity
-          android:name=".activities.StatsActivity">
-      </activity>
-      <activity
-          android:name=".activities.SettingsActivity">
-      </activity>
-      <activity
-          android:name=".activities.LoginActivity">
-      </activity>
-      <activity
-          android:name=".activities.SignupActivity">
-      </activity>
-
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity android:name=".activities.HillfortsListActivity"></activity>
+    <activity android:name=".activities.HillfortActivity"></activity>
+    <activity android:name=".activities.StatsActivity"></activity>
+    <activity android:name=".activities.SettingsActivity"></activity>
+    <activity android:name=".activities.LoginActivity"></activity>
+    <activity android:name=".activities.SignupActivity"></activity>
 
     <meta-data
         android:name="com.google.android.geo.API_KEY"
@@ -50,10 +41,7 @@
 
     <activity
         android:name=".activities.MapActivity"
-        android:label="@string/title_activity_map">
-    </activity>
-
-
+        android:label="@string/title_activity_map"></activity>
   </application>
 
 </manifest>
