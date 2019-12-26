@@ -7,4 +7,5 @@ interface HillfortStore {
   fun delete(hillfort: HillfortModel)
   fun findUsersHillforts(userId: Long): List<HillfortModel>
   fun findVisitedHillforts(userId: Long): List<HillfortModel>
+  fun findById (id: Long) : HillfortModel?
 }

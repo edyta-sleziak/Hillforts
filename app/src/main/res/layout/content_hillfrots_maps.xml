@@ -50,7 +50,7 @@
           android:layout_marginBottom="2dp"
           android:text="@string/hillfort_title_placeholder"
           app:layout_constraintBottom_toTopOf="@+id/currentDescription"
-          app:layout_constraintEnd_toStartOf="@+id/imageView"
+          app:layout_constraintEnd_toStartOf="@+id/currentImage"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,12 +64,12 @@
           android:layout_marginBottom="2dp"
           android:text="@string/hillfort_description_placeholder"
           app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toStartOf="@+id/imageView"
+          app:layout_constraintEnd_toStartOf="@+id/currentImage"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/currentName" />
 
       <ImageView
-          android:id="@+id/imageView"
+          android:id="@+id/currentImage"
           android:layout_width="0dp"
           android:layout_height="0dp"
           android:layout_marginTop="3dp"

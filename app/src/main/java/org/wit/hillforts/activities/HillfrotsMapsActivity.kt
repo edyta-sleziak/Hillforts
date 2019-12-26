@@ -9,8 +9,8 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import org.wit.hillforts.R
 import kotlinx.android.synthetic.main.activity_hillfrots_maps.*
-import kotlinx.android.synthetic.main.activity_map.*
 import kotlinx.android.synthetic.main.content_hillfrots_maps.*
+import org.wit.hillforts.helpers.readImageFromPath
 import org.wit.hillforts.main.MainApp
 
 
@@ -68,7 +68,11 @@ class HillfrotsMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListen
   }
 
   override fun onMarkerClick(marker: Marker): Boolean {
+    val tag = marker.tag as Long
+    val hillfort = app.hillforts.findById(tag)
     currentName.text = marker.title
+    currentDescription.text = hillfort!!.description
+    currentImage.setImageBitmap(readImageFromPath(this, hillfort.image))
     return false
   }
 
