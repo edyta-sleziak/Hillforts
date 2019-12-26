@@ -63,12 +63,12 @@
           android:id="@+id/imageView"
           android:layout_width="140dp"
           android:layout_height="88dp"
-          android:layout_marginStart="10dp"
           android:layout_marginEnd="7dp"
+          android:contentDescription="@string/hillfort_image_placeholder"
           android:text="@string/hillfort_image_placeholder"
           app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
 
+          app:layout_constraintEnd_toEndOf="parent"
           tools:srcCompat="@tools:sample/backgrounds/scenic" />
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.cardview.widget.CardView>
