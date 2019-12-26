@@ -1,23 +1,20 @@
-package org.wit.hillforts.activities
+package org.wit.hillforts.views.login
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.email
 import kotlinx.android.synthetic.main.activity_login.password
 import kotlinx.android.synthetic.main.activity_login.signup
-import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
 import org.wit.hillforts.main.MainApp
-import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.models.UserModel
+import org.wit.hillforts.views.hillfortslist.HillfortsListView
+import org.wit.hillforts.views.signup.SignupView
 
 
-class LoginActivity : AppCompatActivity(), AnkoLogger {
+class LoginView : AppCompatActivity(), AnkoLogger {
 
   var user = UserModel()
   lateinit var app: MainApp
@@ -42,7 +39,7 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
             app.users.setLoggedUser(seekedUser)
             setResult(AppCompatActivity.RESULT_OK)
             finish()
-            startActivityForResult(intentFor<HillfortsListActivity>(),0)
+            startActivityForResult(intentFor<HillfortsListView>(),0)
           } else {
             toast(R.string.toast_incorrectpassword)
           }
@@ -53,7 +50,7 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
     }
 
     signup.setOnClickListener() {
-      startActivityForResult(intentFor<SignupActivity>(),0)
+      startActivityForResult(intentFor<SignupView>(),0)
     }
   }
 

@@ -1,4 +1,4 @@
-package org.wit.hillforts.activities
+package org.wit.hillforts.views.hillfortsmaps
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +14,7 @@ import org.wit.hillforts.helpers.readImageFromPath
 import org.wit.hillforts.main.MainApp
 
 
-class HillfrotsMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
+class HillfortsMapsView : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
   lateinit var app: MainApp
   lateinit var map: GoogleMap
 

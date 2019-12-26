@@ -1,18 +1,16 @@
-package org.wit.hillforts.activities
+package org.wit.hillforts.views.signup
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.*
-import org.jetbrains.anko.email
 import org.wit.hillforts.R
 import org.wit.hillforts.main.MainApp
-import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.models.UserModel
+import org.wit.hillforts.views.hillfortslist.HillfortsListView
 
 
-class SignupActivity : AppCompatActivity(), AnkoLogger {
+class SignupView : AppCompatActivity(), AnkoLogger {
 
   var user = UserModel()
 
@@ -37,7 +35,7 @@ class SignupActivity : AppCompatActivity(), AnkoLogger {
           app.users.setLoggedUser(newUser)
           setResult(AppCompatActivity.RESULT_OK)
           finish()
-          startActivityForResult(intentFor<HillfortsListActivity>(),0)
+          startActivityForResult(intentFor<HillfortsListView>(),0)
         }
       }
     }
