@@ -4,10 +4,10 @@ import kotlinx.android.synthetic.main.activity_stats.*
 import org.jetbrains.anko.startActivityForResult
 import org.wit.hillforts.views.hillfortslist.HillfortsListView
 import org.wit.hillforts.main.MainApp
+import org.wit.hillforts.views.BasePresenter
+import org.wit.hillforts.views.BaseView
 
-class StatsPresenter(val view: StatsView) {
-
-  var app: MainApp
+class StatsPresenter(view: BaseView) : BasePresenter(view) {
 
   init {
     app = view.application as MainApp
@@ -20,7 +20,7 @@ class StatsPresenter(val view: StatsView) {
   }
 
   fun doCancel() {
-    view.startActivityForResult<HillfortsListView>(0)
+    view?.startActivityForResult<HillfortsListView>(0)
   }
 
 }

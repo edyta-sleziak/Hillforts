@@ -12,12 +12,17 @@ import org.wit.hillforts.views.editlocation.EditLocationView
 import org.wit.hillforts.views.hillfortsmaps.HillfortsMapsView
 import org.wit.hillforts.views.hillfort.HillfortView
 import org.wit.hillforts.views.hillfortslist.HillfortsListView
+import org.wit.hillforts.views.login.LoginView
+import org.wit.hillforts.views.settings.SettingsView
+import org.wit.hillforts.views.signup.SignupView
+import org.wit.hillforts.views.splashscreen.SplashScreenView
+import org.wit.hillforts.views.stats.StatsView
 
 val IMAGE_REQUEST = 1
 val LOCATION_REQUEST = 2
 
 enum class VIEW {
-  LOCATION, HILLFORT, MAPS, LIST
+  LOCATION, HILLFORT, MAPS, LIST, STATS, SETTINGS, SPLASHSCREEN, LOGIN, SIGNUP
 }
 
 open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
@@ -31,6 +36,11 @@ open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
       VIEW.HILLFORT -> intent = Intent(this, HillfortView::class.java)
       VIEW.MAPS -> intent = Intent(this, HillfortsMapsView::class.java)
       VIEW.LIST -> intent = Intent(this, HillfortsListView::class.java)
+      VIEW.STATS -> intent = Intent(this, StatsView::class.java)
+      VIEW.SETTINGS -> intent = Intent(this, SettingsView::class.java)
+      VIEW.SPLASHSCREEN -> intent = Intent(this, SplashScreenView::class.java)
+      VIEW.LOGIN -> intent = Intent(this, LoginView::class.java)
+      VIEW.SIGNUP -> intent = Intent(this, SignupView::class.java)
     }
     if (key != "") {
       intent.putExtra(key, value)

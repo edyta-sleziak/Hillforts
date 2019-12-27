@@ -1,6 +1,5 @@
 package org.wit.hillforts.views.stats
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -8,8 +7,9 @@ import kotlinx.android.synthetic.main.activity_settings.toolbarOptions
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
 import org.wit.hillforts.models.UserModel
+import org.wit.hillforts.views.BaseView
 
-class StatsView : AppCompatActivity(), AnkoLogger {
+class StatsView : BaseView(), AnkoLogger {
 
   lateinit var presenter: StatsPresenter
   var user = UserModel()
@@ -20,7 +20,7 @@ class StatsView : AppCompatActivity(), AnkoLogger {
     toolbarOptions.title = "Statistics"
     setSupportActionBar(toolbarOptions)
 
-    presenter = StatsPresenter(this)
+    presenter = initPresenter(StatsPresenter(this)) as StatsPresenter
 
   }
 

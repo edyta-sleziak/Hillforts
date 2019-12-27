@@ -9,9 +9,10 @@ import kotlinx.android.synthetic.main.activity_login.signup
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
 import org.wit.hillforts.models.UserModel
+import org.wit.hillforts.views.BaseView
 
 
-class LoginView : AppCompatActivity(), AnkoLogger {
+class LoginView : BaseView(), AnkoLogger {
 
   var user = UserModel()
   lateinit var presenter: LoginPresenter
@@ -20,7 +21,7 @@ class LoginView : AppCompatActivity(), AnkoLogger {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
 
-    presenter = LoginPresenter(this)
+    presenter = initPresenter(LoginPresenter(this)) as LoginPresenter
 
 
     login.setOnClickListener() {

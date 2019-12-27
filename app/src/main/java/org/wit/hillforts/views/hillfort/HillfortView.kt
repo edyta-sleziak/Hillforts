@@ -14,9 +14,10 @@ import org.wit.hillforts.R
 import org.wit.hillforts.helpers.readImageFromPath
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.HillfortModel
+import org.wit.hillforts.views.BaseView
 import java.util.*
 
-class HillfortView : AppCompatActivity(), AnkoLogger {
+class HillfortView : BaseView(), AnkoLogger {
 
   lateinit var presenter: HillfortPresenter
   var hillfort = HillfortModel()
@@ -31,7 +32,7 @@ class HillfortView : AppCompatActivity(), AnkoLogger {
     chooseImage.setOnClickListener {
       info ("Select image")
     }
-    presenter = HillfortPresenter(this)
+    presenter = initPresenter(HillfortPresenter(this)) as HillfortPresenter
 
     val datepicker = Calendar.getInstance()
     val year = datepicker.get(Calendar.YEAR)
@@ -57,7 +58,7 @@ class HillfortView : AppCompatActivity(), AnkoLogger {
 
   }
 
-  fun showHillfort(hillfort: HillfortModel) {
+  override fun showHillfort(hillfort: HillfortModel) {
     HillfortName.setText(hillfort.name)
     HillfortDescription.setText(hillfort.description)
     HillfortNotes.setText(hillfort.notes)

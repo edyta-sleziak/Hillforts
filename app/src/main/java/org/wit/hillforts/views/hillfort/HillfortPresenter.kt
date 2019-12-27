@@ -6,16 +6,17 @@ import org.wit.hillforts.helpers.showImagePicker
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.Location
 import org.wit.hillforts.models.HillfortModel
+import org.wit.hillforts.views.BasePresenter
+import org.wit.hillforts.views.BaseView
 import org.wit.hillforts.views.editlocation.EditLocationView
 
-class HillfortPresenter(val view: HillfortView) {
+class HillfortPresenter(view: BaseView) : BasePresenter(view) {
 
   val IMAGE_REQUEST = 1
   val LOCATION_REQUEST = 2
 
   var hillfort = HillfortModel()
   var location = Location(52.245696, -7.139102, 15f)
-  var app: MainApp
   var edit = false
 
   init {
@@ -39,20 +40,20 @@ class HillfortPresenter(val view: HillfortView) {
     } else {
       app.hillforts.create(hillfort)
     }
-    view.finish()
+    view?.finish()
   }
 
   fun doCancel() {
-    view.finish()
+    view?.finish()
   }
 
   fun doDelete() {
     app.hillforts.delete(hillfort)
-    view.finish()
+    view?.finish()
   }
 
   fun doSelectImage() {
-    showImagePicker(view, IMAGE_REQUEST)
+    showImagePicker(view!!, IMAGE_REQUEST)
   }
 
   fun doSetLocation() {
@@ -61,14 +62,14 @@ class HillfortPresenter(val view: HillfortView) {
       location.lng = hillfort.lng
       location.zoom = hillfort.zoom
     }
-    view.startActivityForResult(view.intentFor<EditLocationView>().putExtra("location", location), LOCATION_REQUEST)
+    view?.startActivityForResult(view?.intentFor<EditLocationView>()!!.putExtra("location", location), LOCATION_REQUEST)
   }
 
-  fun doActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+  override fun doActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
     when (requestCode) {
       IMAGE_REQUEST -> {
         hillfort.image = data.data.toString()
-        view.showHillfort(hillfort)
+        view?.showHillfort(hillfort)
       }
       LOCATION_REQUEST -> {
         location = data.extras?.getParcelable<Location>("location")!!

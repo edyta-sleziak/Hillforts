@@ -10,10 +10,11 @@ import org.jetbrains.anko.*
 import org.wit.hillforts.R
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.UserModel
+import org.wit.hillforts.views.BaseView
 import org.wit.hillforts.views.hillfortslist.HillfortsListView
 import org.wit.hillforts.views.login.LoginView
 
-class SettingsView : AppCompatActivity(), AnkoLogger {
+class SettingsView : BaseView(), AnkoLogger {
 
   var user = UserModel()
   lateinit var presenter: SettingsPresenter
@@ -24,7 +25,7 @@ class SettingsView : AppCompatActivity(), AnkoLogger {
     toolbarOptions.title = "Settings"
     setSupportActionBar(toolbarOptions)
 
-    presenter = SettingsPresenter(this)
+    presenter = initPresenter(SettingsPresenter(this)) as SettingsPresenter
 
     change_password.setOnClickListener {
       if (old_password.text.toString().isEmpty()) {

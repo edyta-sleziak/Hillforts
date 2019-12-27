@@ -11,9 +11,9 @@ import org.wit.hillforts.views.BaseView
 
 class HillfortMapPresenter(view: BaseView) : BasePresenter(view) {
 
-  fun doPopulateMap(map: GoogleMap, placemarks: List<HillfortModel>) {
+  fun doPopulateMap(map: GoogleMap, hillforts: List<HillfortModel>) {
     map.uiSettings.setZoomControlsEnabled(true)
-    placemarks.forEach {
+    hillforts.forEach {
       val loc = LatLng(it.lat, it.lng)
       val options = MarkerOptions().title(it.name).position(loc)
       map.addMarker(options).tag = it.id

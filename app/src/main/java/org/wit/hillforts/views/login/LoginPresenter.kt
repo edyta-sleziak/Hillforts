@@ -7,12 +7,12 @@ import org.jetbrains.anko.toast
 import org.wit.hillforts.R
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.UserModel
+import org.wit.hillforts.views.BasePresenter
+import org.wit.hillforts.views.BaseView
 import org.wit.hillforts.views.hillfortslist.HillfortsListView
 import org.wit.hillforts.views.signup.SignupView
 
-class LoginPresenter(val view: LoginView) {
-
-  var app: MainApp
+class LoginPresenter(view: BaseView) : BasePresenter(view) {
 
   init {
     app = view.application as MainApp
@@ -23,19 +23,19 @@ class LoginPresenter(val view: LoginView) {
     if(seekedUser!!.email.isNotEmpty()) {                                                     //todo bug when user is not recognised
       if(seekedUser.password == user.password) {
         app.users.setLoggedUser(seekedUser)
-        view.setResult(AppCompatActivity.RESULT_OK)
-        view.finish()
-        view.startActivityForResult(view.intentFor<HillfortsListView>(),0)
+        view?.setResult(AppCompatActivity.RESULT_OK)
+        view?.finish()
+        view?.startActivityForResult(view?.intentFor<HillfortsListView>(),0)
       } else {
-        view.toast(R.string.toast_incorrectpassword)
+        view?.toast(R.string.toast_incorrectpassword)
       }
     } else {
-      view.toast(R.string.toast_incorrectpassword)
+      view?.toast(R.string.toast_incorrectpassword)
     }
   }
 
   fun doSignup () {
-    view.startActivityForResult(view.intentFor<SignupView>(),0)
+    view?.startActivityForResult(view?.intentFor<SignupView>(),0)
   }
 
 }

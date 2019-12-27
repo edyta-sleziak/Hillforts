@@ -7,10 +7,11 @@ import org.jetbrains.anko.*
 import org.wit.hillforts.R
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.UserModel
+import org.wit.hillforts.views.BaseView
 import org.wit.hillforts.views.hillfortslist.HillfortsListView
 
 
-class SignupView : AppCompatActivity(), AnkoLogger {
+class SignupView : BaseView(), AnkoLogger {
 
   var user = UserModel()
 
@@ -20,7 +21,7 @@ class SignupView : AppCompatActivity(), AnkoLogger {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_signup)
 
-    presenter = SignupPresenter(this)
+    presenter = initPresenter(SignupPresenter(this)) as SignupPresenter
 
     signup.setOnClickListener() {
       user.email = email.text.toString()

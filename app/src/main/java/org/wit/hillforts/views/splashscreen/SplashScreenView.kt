@@ -4,10 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.wit.hillforts.R
+import org.wit.hillforts.views.BaseView
 import org.wit.hillforts.views.login.LoginView
 import org.wit.hillforts.views.stats.StatsPresenter
 
-class SplashScreenView : AppCompatActivity() {
+class SplashScreenView : BaseView() {
 
   lateinit var presenter: SplashscreenPresenter
 
@@ -15,7 +16,7 @@ class SplashScreenView : AppCompatActivity() {
     super.onCreate(savedInstaceState)
     setContentView(R.layout.activity_splashscreen)
 
-    presenter = SplashscreenPresenter(this)
+    presenter = initPresenter(SplashscreenPresenter(this)) as SplashscreenPresenter
 
     val background = object : Thread() {
       override fun run() {
