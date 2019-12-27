@@ -39,8 +39,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/btnAdd"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/HillfortNotes"
@@ -109,19 +109,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/HillfortVisitedDate" />
 
-            <Button
-                android:id="@+id/btnAdd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:background="@color/colorAccent"
-                android:stateListAnimator="@null"
-                android:text="@string/button_addHillfort"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/HillfortImage" />
 
             <Button
                 android:id="@+id/chooseImage"
@@ -159,10 +146,11 @@
             <EditText
                 android:id="@+id/HillfortDescription"
                 android:layout_width="0dp"
-                android:layout_height="119dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:autofillHints=""
                 android:hint="@string/hint_hillfortDescription"
                 android:inputType="text"
@@ -171,6 +159,7 @@
                 android:singleLine="false"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/hillfortLocation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/HillfortName" />

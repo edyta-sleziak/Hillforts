@@ -12,10 +12,13 @@ import kotlinx.android.synthetic.main.activity_hillfrots_maps.*
 import kotlinx.android.synthetic.main.content_hillfrots_maps.*
 import org.wit.hillforts.helpers.readImageFromPath
 import org.wit.hillforts.main.MainApp
+import org.wit.hillforts.models.HillfortModel
+import org.wit.hillforts.views.BaseView
 
 
-class HillfortsMapsView : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
-  lateinit var app: MainApp
+class HillfortsMapsView : BaseView(), GoogleMap.OnMarkerClickListener {
+
+  lateinit var presenter: HillfortMapPresenter
   lateinit var map: GoogleMap
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,11 +26,14 @@ class HillfortsMapsView : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
     setContentView(R.layout.activity_hillfrots_maps)
     toolbar.title = title
     setSupportActionBar(toolbar)
+
+    presenter = initPresenter(HillfortMapPresenter(this)) as HillfortMapPresenter
+
     mapView.onCreate(savedInstanceState)
-    app = application as MainApp
     mapView.getMapAsync {
       map = it
-      configureMap()
+      map.setOnMarkerClickListener(this)
+      presenter.loadHillforts()
     }
   }
 
@@ -56,24 +62,19 @@ class HillfortsMapsView : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
     mapView.onSaveInstanceState(outState)
   }
 
-  fun configureMap() {
-    map.uiSettings.setZoomControlsEnabled(true)
-    app.hillforts.findAll().forEach {
-      val loc = LatLng(it.lat, it.lng)
-      val options = MarkerOptions().title(it.name).position(loc)
-      map.addMarker(options).tag = it.id
-      map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
-      map.setOnMarkerClickListener(this)
-    }
+  override fun onMarkerClick(marker: Marker): Boolean {
+    presenter.doMarkerSelected(marker)
+    return true
   }
 
-  override fun onMarkerClick(marker: Marker): Boolean {
-    val tag = marker.tag as Long
-    val hillfort = app.hillforts.findById(tag)
-    currentName.text = marker.title
-    currentDescription.text = hillfort!!.description
+  override fun showHillfort(hillfort: HillfortModel) {
+    currentName.text = hillfort.name
+    currentDescription.text = hillfort.description
     currentImage.setImageBitmap(readImageFromPath(this, hillfort.image))
-    return false
+  }
+
+  override fun showHillforts(hillforts: List<HillfortModel>) {
+    presenter.doPopulateMap(map, hillforts)
   }
 
 }

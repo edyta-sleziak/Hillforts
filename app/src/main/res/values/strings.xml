@@ -9,6 +9,7 @@
   <string name="menu_addNewHillfort">Add</string>
   <string name="menu_cancel">Cancel</string>
   <string name="menu_delete">Delete</string>
+  <string name="menu_save">Save</string>
   <string name="button_addImage"> Add Image </string>
   <string name="button_updateImage"> Update Image </string>
   <string name="select_hillfort_image"> Select Image </string>

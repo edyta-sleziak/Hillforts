@@ -14,13 +14,13 @@ class SignupView : AppCompatActivity(), AnkoLogger {
 
   var user = UserModel()
 
-  lateinit var app: MainApp
+  lateinit var presenter: SignupPresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_signup)
 
-    app = application as MainApp
+    presenter = SignupPresenter(this)
 
     signup.setOnClickListener() {
       user.email = email.text.toString()
@@ -29,14 +29,7 @@ class SignupView : AppCompatActivity(), AnkoLogger {
       if (user.email.isEmpty() || user.password.isEmpty()) {
         toast(R.string.enter_credentials)
       } else {
-        app.users.create(user.copy())
-        var newUser = app.users.findOne(user.email)
-        if (newUser!!.email.isNotEmpty()) {
-          app.users.setLoggedUser(newUser)
-          setResult(AppCompatActivity.RESULT_OK)
-          finish()
-          startActivityForResult(intentFor<HillfortsListView>(),0)
-        }
+        presenter.doSignup(user)
       }
     }
   }

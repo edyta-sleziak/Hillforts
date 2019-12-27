@@ -16,7 +16,7 @@ import org.wit.hillforts.views.login.LoginView
 class SettingsView : AppCompatActivity(), AnkoLogger {
 
   var user = UserModel()
-  lateinit var app: MainApp
+  lateinit var presenter: SettingsPresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -24,7 +24,7 @@ class SettingsView : AppCompatActivity(), AnkoLogger {
     toolbarOptions.title = "Settings"
     setSupportActionBar(toolbarOptions)
 
-    app = application as MainApp
+    presenter = SettingsPresenter(this)
 
     change_password.setOnClickListener {
       if (old_password.text.toString().isEmpty()) {
@@ -33,28 +33,15 @@ class SettingsView : AppCompatActivity(), AnkoLogger {
         if(new_password.text.toString().isEmpty()) {
           toast("New password is required")
         } else {
-          if(app.users.getLoggedUser()!!.email.isNotEmpty()) {
-            if (old_password.text.toString().equals(app.users.getLoggedUser()!!.password)) {
-              var currentUser = app.users.findOne(app.users.getLoggedUser()!!.email)
-              currentUser!!.password = new_password.text.toString()
-              app.users.update(currentUser)
-              toast("Password changed")
-              startActivityForResult<HillfortsListView>(0)
-            } else {
-              toast("Entered old password does not match your current password. Please try again.")
-            }
-          } else {
-            startActivityForResult<LoginView>(0)
-          }
+          presenter.doChangePassword(new_password.text.toString(), old_password.text.toString())
         }
       }
     }
-
   }
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
-      R.id.item_cancel -> startActivityForResult<HillfortsListView>(0)
+      R.id.item_cancel -> presenter.doCancel()
     }
     return super.onOptionsItemSelected(item)
   }

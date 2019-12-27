@@ -55,20 +55,7 @@ class HillfortView : AppCompatActivity(), AnkoLogger {
       presenter.doSetLocation()
     }
 
-    btnAdd.setOnClickListener{
-      if (HillfortName.text.toString().isEmpty()) {
-        toast(R.string.enter_name)
-      } else {
-        presenter.doAddOrSave(HillfortName.text.toString(),
-                              HillfortDescription.text.toString(),
-                              HillfortNotes.text.toString(),
-                              HillfortVisited.isChecked,
-                              HillfortVisitedDate.text.toString(),
-                              app.users.getLoggedUser()!!.id
-                              )
-        }
-      }
-    }
+  }
 
   fun showHillfort(hillfort: HillfortModel) {
     HillfortName.setText(hillfort.name)
@@ -80,7 +67,6 @@ class HillfortView : AppCompatActivity(), AnkoLogger {
     if(hillfort.image != null) {
       chooseImage.setText(R.string.button_updateImage)
     }
-    btnAdd.setText(R.string.button_editHillfort)
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -97,6 +83,19 @@ class HillfortView : AppCompatActivity(), AnkoLogger {
       }
       R.id.item_delete -> {
         presenter.doDelete()
+      }
+      R.id.item_save -> {
+        if (HillfortName.text.toString().isEmpty()) {
+          toast(R.string.enter_name)
+        } else {
+          presenter.doAddOrSave(HillfortName.text.toString(),
+            HillfortDescription.text.toString(),
+            HillfortNotes.text.toString(),
+            HillfortVisited.isChecked,
+            HillfortVisitedDate.text.toString(),
+            app.users.getLoggedUser()!!.id
+          )
+        }
       }
     }
     return super.onOptionsItemSelected(item)
