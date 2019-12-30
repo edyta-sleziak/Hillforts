@@ -1,8 +1,6 @@
 package org.wit.hillforts.views.hillfortslist
 
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.startActivityForResult
+import org.jetbrains.anko.*
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.views.BasePresenter
@@ -19,7 +17,14 @@ class HillfortsListPresenter(view: BaseView) : BasePresenter(view) {
     app = view.application as MainApp
   }
 
-  fun getHillforts() = app.hillforts.findAll()
+  fun loadHillforts() {
+    doAsync {
+      val hillforts = app.hillforts.findAll()
+      uiThread {
+        view?.showHillforts(hillforts)
+      }
+    }
+  }
 
   fun doAddHillfort() {
     view?.startActivityForResult<HillfortView>(0)

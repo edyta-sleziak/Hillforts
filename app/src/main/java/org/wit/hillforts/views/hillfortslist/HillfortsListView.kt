@@ -31,8 +31,11 @@ class HillfortsListView : BaseView(), HillfortListener, AnkoLogger {
 
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
-    recyclerView.adapter =
-      HillfortAdapter(presenter.getHillforts(), this)
+    presenter.loadHillforts()
+  }
+
+  override fun showHillforts(hillforts: List<HillfortModel>) {
+    recyclerView.adapter = HillfortAdapter(hillforts, this)
     recyclerView.adapter?.notifyDataSetChanged()
   }
 
