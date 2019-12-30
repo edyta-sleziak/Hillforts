@@ -2,6 +2,7 @@ package org.wit.hillforts.views.signup
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
@@ -30,7 +31,7 @@ class SignupView : BaseView(), AnkoLogger {
       if (user.email.isEmpty() || user.password.isEmpty()) {
         toast(R.string.enter_credentials)
       } else {
-        presenter.doSignup(user)
+        presenter.doSignup(user.email, user.password)
       }
     }
   }

@@ -1,6 +1,10 @@
 package org.wit.hillforts.views.hillfort
 
 import android.content.Intent
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.uiThread
@@ -10,6 +14,7 @@ import org.wit.hillforts.models.Location
 import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.views.BasePresenter
 import org.wit.hillforts.views.BaseView
+import org.wit.hillforts.views.VIEW
 import org.wit.hillforts.views.editlocation.EditLocationView
 
 class HillfortPresenter(view: BaseView) : BasePresenter(view) {
@@ -17,6 +22,7 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
   val IMAGE_REQUEST = 1
   val LOCATION_REQUEST = 2
 
+  var map: GoogleMap? = null
   var hillfort = HillfortModel()
   var location = Location(52.245696, -7.139102, 15f)
   var edit = false
@@ -62,13 +68,23 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
     showImagePicker(view!!, IMAGE_REQUEST)
   }
 
+  fun doConfigureMap(m: GoogleMap) {
+    map = m
+    locationUpdate(hillfort.location)
+  }
+
   fun doSetLocation() {
-    if (hillfort.zoom != 0f) {
-      location.lat = hillfort.lat
-      location.lng = hillfort.lng
-      location.zoom = hillfort.zoom
-    }
-    view?.startActivityForResult(view?.intentFor<EditLocationView>()!!.putExtra("location", location), LOCATION_REQUEST)
+    view?.navigateTo(VIEW.LOCATION, LOCATION_REQUEST, "location", Location(hillfort.location.lat, hillfort.location.lng, hillfort.location.zoom))
+  }
+
+  fun locationUpdate(location: Location) {
+    hillfort.location = location
+    hillfort.location.zoom = 15f
+    map?.clear()
+    val options = MarkerOptions().title(hillfort.name).position(LatLng(hillfort.location.lat, hillfort.location.lng))
+    map?.addMarker(options)
+    map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(hillfort.location.lat, hillfort.location.lng), hillfort.location.zoom))
+    view?.showLocation(hillfort.location)
   }
 
   override fun doActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
@@ -79,9 +95,8 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
       }
       LOCATION_REQUEST -> {
         location = data.extras?.getParcelable<Location>("location")!!
-        hillfort.lat = location.lat
-        hillfort.lng = location.lng
-        hillfort.zoom = location.zoom
+        hillfort.location = location
+        locationUpdate(location)
       }
     }
   }

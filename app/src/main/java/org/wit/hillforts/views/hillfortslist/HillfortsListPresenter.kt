@@ -5,6 +5,7 @@ import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.views.BasePresenter
 import org.wit.hillforts.views.BaseView
+import org.wit.hillforts.views.VIEW
 import org.wit.hillforts.views.hillfort.HillfortView
 import org.wit.hillforts.views.hillfortsmaps.HillfortsMapsView
 import org.wit.hillforts.views.login.LoginView
@@ -48,6 +49,6 @@ class HillfortsListPresenter(view: BaseView) : BasePresenter(view) {
 
   fun doLogout() {
     app.users.setLoggedUser(null)
-    view?.startActivity<LoginView>()
+    view?.navigateTo(VIEW.LOGIN)
   }
 }

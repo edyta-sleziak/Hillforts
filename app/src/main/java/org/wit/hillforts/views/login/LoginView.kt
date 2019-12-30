@@ -1,7 +1,7 @@
 package org.wit.hillforts.views.login
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.email
 import kotlinx.android.synthetic.main.activity_login.password
@@ -20,6 +20,7 @@ class LoginView : BaseView(), AnkoLogger {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
+    progressBar.visibility = View.GONE
 
     presenter = initPresenter(LoginPresenter(this)) as LoginPresenter
 
@@ -31,13 +32,21 @@ class LoginView : BaseView(), AnkoLogger {
       if (user.email.isEmpty() && user.password.isEmpty()) {
         toast(R.string.enter_credentials)
       } else {
-        presenter.doLogin(user)
+        presenter.doLogin(user.email, user.password)
       }
     }
 
     signup.setOnClickListener() {
       presenter.doSignup()
     }
+  }
+
+  override fun showProgress() {
+    progressBar.visibility = View.VISIBLE
+  }
+
+  override fun hideProgress() {
+    progressBar.visibility = View.GONE
   }
 
 }

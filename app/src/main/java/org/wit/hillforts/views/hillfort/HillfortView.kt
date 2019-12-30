@@ -14,6 +14,7 @@ import org.wit.hillforts.R
 import org.wit.hillforts.helpers.readImageFromPath
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.HillfortModel
+import org.wit.hillforts.models.Location
 import org.wit.hillforts.views.BaseView
 import java.util.*
 
@@ -68,6 +69,11 @@ class HillfortView : BaseView(), AnkoLogger {
     if(hillfort.image != null) {
       chooseImage.setText(R.string.button_updateImage)
     }
+  }
+
+  override fun showLocation(location: Location) {
+//    lat.setText("%.6f".format(latitude))
+//    lng.setText("%.6f".format(longitude))
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
