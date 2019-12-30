@@ -1,4 +1,4 @@
-package org.wit.hillforts.models
+package org.wit.hillforts.models.json
 
 import android.content.Context
 import com.google.gson.Gson
@@ -6,6 +6,8 @@ import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import org.jetbrains.anko.AnkoLogger
 import org.wit.hillforts.helpers.*
+import org.wit.hillforts.models.UserModel
+import org.wit.hillforts.models.UserStore
 import java.util.*
 
 val USER_FILE= "users.json"
@@ -61,12 +63,14 @@ class UserJSONStore : UserStore, AnkoLogger {
     return loggedUser
   }
 
-  override fun setLoggedUser(user:UserModel?) {
+  override fun setLoggedUser(user: UserModel?) {
     loggedUser = user
   }
 
   private fun serialize() {
-    val jsonString = gsonBuilderUsers.toJson(users, listTypeUser)
+    val jsonString = gsonBuilderUsers.toJson(users,
+      listTypeUser
+    )
     write(context, USER_FILE, jsonString)
   }
 
