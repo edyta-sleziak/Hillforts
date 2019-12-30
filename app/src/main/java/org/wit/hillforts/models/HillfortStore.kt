@@ -8,4 +8,5 @@ interface HillfortStore {
   fun findUsersHillforts(userId: Long): List<HillfortModel>
   fun findVisitedHillforts(userId: Long): List<HillfortModel>
   fun findById (id: Long) : HillfortModel?
+  fun clear()
 }
