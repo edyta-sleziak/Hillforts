@@ -17,7 +17,7 @@
     <activity
         android:name=".views.hillfortsmaps.HillfortsMapsView"
         android:label="@string/title_activity_hillfrots_maps"
-        android:theme="@style/AppTheme.NoActionBar"></activity>
+        android:theme="@style/AppTheme.NoActionBar"/>
     <activity
         android:name=".views.splashscreen.SplashScreenView"
         android:noHistory="true"
@@ -28,12 +28,12 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".views.hillfortslist.HillfortsListView"></activity>
-    <activity android:name=".views.hillfort.HillfortView"></activity>
-    <activity android:name=".views.stats.StatsView"></activity>
-    <activity android:name=".views.settings.SettingsView"></activity>
-    <activity android:name=".views.login.LoginView"></activity>
-    <activity android:name=".views.signup.SignupView"></activity>
+    <activity android:name=".views.hillfortslist.HillfortsListView"/>
+    <activity android:name=".views.hillfort.HillfortView"/>
+    <activity android:name=".views.stats.StatsView"/>
+    <activity android:name=".views.settings.SettingsView"/>
+    <activity android:name=".views.login.LoginView"/>
+    <activity android:name=".views.signup.SignupView"/>
 
     <meta-data
         android:name="com.google.android.geo.API_KEY"

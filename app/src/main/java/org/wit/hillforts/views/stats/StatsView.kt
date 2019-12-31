@@ -12,7 +12,7 @@ import org.wit.hillforts.views.BaseView
 class StatsView : BaseView(), AnkoLogger {
 
   lateinit var presenter: StatsPresenter
-  var user = UserModel()
+  //var user = UserModel()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

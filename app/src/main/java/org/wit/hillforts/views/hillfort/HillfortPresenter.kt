@@ -22,8 +22,8 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
   val IMAGE_REQUEST = 1
   val LOCATION_REQUEST = 2
 
-  var map: GoogleMap? = null
   var hillfort = HillfortModel()
+  var map: GoogleMap? = null
   var location = Location(52.245696, -7.139102, 15f)
   var edit = false
 
@@ -34,6 +34,11 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
       hillfort = view.intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
       view.showHillfort(hillfort)
     }
+  }
+
+  fun doConfigureMap(m: GoogleMap) {
+    map = m
+    locationUpdate(hillfort.location)
   }
 
   fun doAddOrSave(name: String, description: String, notes: String, visited: Boolean, visitedDate: String, userId: Long) {
@@ -60,17 +65,16 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun doDelete() {
-    app.hillforts.delete(hillfort)
-    view?.finish()
+    doAsync {
+      app.hillforts.delete(hillfort)
+      uiThread {
+        view?.finish()
+      }
+    }
   }
 
   fun doSelectImage() {
     showImagePicker(view!!, IMAGE_REQUEST)
-  }
-
-  fun doConfigureMap(m: GoogleMap) {
-    map = m
-    locationUpdate(hillfort.location)
   }
 
   fun doSetLocation() {

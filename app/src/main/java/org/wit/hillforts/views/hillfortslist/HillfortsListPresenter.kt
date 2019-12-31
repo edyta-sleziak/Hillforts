@@ -1,5 +1,6 @@
 package org.wit.hillforts.views.hillfortslist
 
+import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.*
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.HillfortModel
@@ -28,7 +29,7 @@ class HillfortsListPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun doAddHillfort() {
-    view?.startActivityForResult<HillfortView>(0)
+    view?.navigateTo(VIEW.HILLFORT)
   }
 
   fun doEditHillfort(hillfort: HillfortModel) {
@@ -36,19 +37,20 @@ class HillfortsListPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun doShowHillfortsMap() {
-    view?.startActivity<HillfortsMapsView>()
+    view?.navigateTo(VIEW.MAPS)
   }
 
   fun doShowStats() {
-    view?.startActivity<StatsView>()
+    view?.navigateTo(VIEW.STATS)
   }
 
   fun doShowSettings() {
-    view?.startActivity<SettingsView>()
+    view?.navigateTo(VIEW.SETTINGS)
   }
 
   fun doLogout() {
-    app.users.setLoggedUser(null)
+    FirebaseAuth.getInstance().signOut()
+    //app.hillforts.clear()
     view?.navigateTo(VIEW.LOGIN)
   }
 }

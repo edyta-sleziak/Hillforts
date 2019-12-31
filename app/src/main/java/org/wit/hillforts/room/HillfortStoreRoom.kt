@@ -43,4 +43,7 @@ class HillfortStoreRoom(val context: Context) : HillfortStore {
   override fun findVisitedHillforts(userId: Long): List<HillfortModel>  {
     return dao.findVisitedHillforts(userId)
   }
+
+  override fun clear() {
+  }
 }
