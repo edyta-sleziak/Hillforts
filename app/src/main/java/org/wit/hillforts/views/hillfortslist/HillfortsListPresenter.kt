@@ -48,6 +48,16 @@ class HillfortsListPresenter(view: BaseView) : BasePresenter(view) {
     view?.navigateTo(VIEW.SETTINGS)
   }
 
+  fun doShowSearch() {
+    view?.toast("Selected Search")
+    //view?.navigateTo(VIEW.SEARCH)
+  }
+
+  fun doShowFavourites() {
+    view?.toast("Selected Favourites")
+    //view?.navigateTo(VIEW.FAVOURITES)
+  }
+
   fun doLogout() {
     FirebaseAuth.getInstance().signOut()
     //app.hillforts.clear()

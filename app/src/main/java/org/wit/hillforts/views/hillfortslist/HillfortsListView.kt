@@ -50,6 +50,8 @@ class HillfortsListView : BaseView(), HillfortListener, AnkoLogger {
       R.id.item_stats -> presenter.doShowStats()
       R.id.item_settings -> presenter.doShowSettings()
       R.id.item_map -> presenter.doShowHillfortsMap()
+      R.id.item_favourites -> presenter.doShowFavourites()
+      R.id.item_search -> presenter.doShowSearch()
       R.id.item_logout -> presenter.doLogout()
     }
     return super.onOptionsItemSelected(item)

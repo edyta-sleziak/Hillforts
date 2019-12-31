@@ -21,8 +21,14 @@
         android:id="@+id/item_map"
         android:title="@string/drawer_map">
     </item>
-
-
+    <item
+        android:id="@+id/item_favourites"
+        android:title="@string/drawer_favourites">
+    </item>
+    <item
+        android:id="@+id/item_search"
+        android:title="@string/drawer_search">
+    </item>
     <item
         android:id="@+id/item_logout"
         android:title="@string/drawer_logout">
