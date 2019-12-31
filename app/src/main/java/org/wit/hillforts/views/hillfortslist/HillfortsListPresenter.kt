@@ -1,5 +1,6 @@
 package org.wit.hillforts.views.hillfortslist
 
+import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.*
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.HillfortModel
@@ -48,7 +49,8 @@ class HillfortsListPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun doLogout() {
-    app.users.setLoggedUser(null)
-    view?.startActivity<LoginView>()
+    FirebaseAuth.getInstance().signOut()
+    //app.hillforts.clear()
+    view?.navigateTo(VIEW.LOGIN)
   }
 }
