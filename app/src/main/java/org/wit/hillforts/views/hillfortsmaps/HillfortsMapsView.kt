@@ -2,6 +2,7 @@ package org.wit.hillforts.views.hillfortsmaps
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -70,7 +71,7 @@ class HillfortsMapsView : BaseView(), GoogleMap.OnMarkerClickListener {
   override fun showHillfort(hillfort: HillfortModel) {
     currentName.text = hillfort.name
     currentDescription.text = hillfort.description
-    currentImage.setImageBitmap(readImageFromPath(this, hillfort.image))
+    Glide.with(this).load(hillfort.image).into(currentImage)
   }
 
   override fun showHillforts(hillforts: List<HillfortModel>) {
