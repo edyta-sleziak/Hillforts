@@ -13,7 +13,7 @@ import org.wit.hillforts.room.HillfortStoreRoom
 class MainApp : Application(), AnkoLogger {
 
   lateinit var hillforts: HillfortStore
-  lateinit var users: UserStore
+  //lateinit var users: UserStore
 
   override fun onCreate() {
     super.onCreate()

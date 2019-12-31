@@ -11,12 +11,12 @@ class StatsPresenter(view: BaseView) : BasePresenter(view) {
 
   init {
     app = view.application as MainApp
-    var usersHillforts = app.hillforts.findUsersHillforts(app.users.getLoggedUser()!!.id).size
-    view.progressBar.max = usersHillforts
-    var visitedHillforts = app.hillforts.findVisitedHillforts(app.users.getLoggedUser()!!.id).size
-    view.totalUsersHillforts.text = "$usersHillforts"
-    view.totalVisitedHillforts.text = "$visitedHillforts"
-    view.progressBar.progress = visitedHillforts
+    //var usersHillforts = app.hillforts.findUsersHillforts(app.users.getLoggedUser()!!.id).size
+   // view.progressBar.max = usersHillforts
+   // var visitedHillforts = app.hillforts.findVisitedHillforts(app.users.getLoggedUser()!!.id).size
+    //view.totalUsersHillforts.text = "$usersHillforts"
+    //view.totalVisitedHillforts.text = "$visitedHillforts"
+    //view.progressBar.progress = visitedHillforts
   }
 
   fun doCancel() {

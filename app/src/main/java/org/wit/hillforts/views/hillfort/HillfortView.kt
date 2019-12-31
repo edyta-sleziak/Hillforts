@@ -94,7 +94,8 @@ class HillfortView : BaseView(), AnkoLogger {
             HillfortNotes.text.toString(),
             HillfortVisited.isChecked,
             HillfortVisitedDate.text.toString(),
-            app.users.getLoggedUser()!!.id
+            0
+            //app.users.getLoggedUser()!!.id
           )
         }
       }

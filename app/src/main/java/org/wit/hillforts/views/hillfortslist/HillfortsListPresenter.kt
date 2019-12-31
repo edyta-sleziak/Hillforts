@@ -28,7 +28,7 @@ class HillfortsListPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun doAddHillfort() {
-    view?.startActivityForResult<HillfortView>(0)
+    view?.navigateTo(VIEW.HILLFORT)
   }
 
   fun doEditHillfort(hillfort: HillfortModel) {
@@ -36,15 +36,15 @@ class HillfortsListPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun doShowHillfortsMap() {
-    view?.startActivity<HillfortsMapsView>()
+    view?.navigateTo(VIEW.MAPS)
   }
 
   fun doShowStats() {
-    view?.startActivity<StatsView>()
+    view?.navigateTo(VIEW.STATS)
   }
 
   fun doShowSettings() {
-    view?.startActivity<SettingsView>()
+    view?.navigateTo(VIEW.SETTINGS)
   }
 
   fun doLogout() {
