@@ -6,6 +6,7 @@
   <string name="hint_hillfortName">Name</string>
   <string name="hint_hillfortDescription">Description</string>
   <string name="hint_hillfortNotes">Notes</string>
+  <string name="hint_favourite">Favourite</string>
   <string name="menu_addNewHillfort">Add</string>
   <string name="menu_cancel">Cancel</string>
   <string name="menu_delete">Delete</string>

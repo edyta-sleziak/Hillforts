@@ -6,10 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import android.widget.RatingBar
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortDescription
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortName
+import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
 import org.wit.hillforts.helpers.readImageFromPath
@@ -66,6 +70,8 @@ class HillfortView : BaseView(), AnkoLogger {
     HillfortNotes.setText(hillfort.notes)
     HillfortVisited.setChecked(hillfort.visited)
     HillfortVisitedDate.setText(hillfort.visitedDate)
+    Favourite.setChecked(hillfort.favourite)
+    ratingBar.setRating(hillfort.rating.toFloat())
     Glide.with(this).load(hillfort.image).into(HillfortImage)
     if(hillfort.image != null) {
       chooseImage.setText(R.string.button_updateImage)
@@ -101,8 +107,8 @@ class HillfortView : BaseView(), AnkoLogger {
             HillfortNotes.text.toString(),
             HillfortVisited.isChecked,
             HillfortVisitedDate.text.toString(),
-            0
-            //app.users.getLoggedUser()!!.id
+            ratingBar.rating.toInt(),
+            Favourite.isChecked
           )
         }
       }

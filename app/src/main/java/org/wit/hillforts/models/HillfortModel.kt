@@ -15,6 +15,8 @@ data class HillfortModel(@PrimaryKey(autoGenerate = true) var id: Long = 0,
                          var image: String = "",
                          var visited: Boolean = false,
                          var visitedDate: String = "",
+                         var favourite: Boolean = false,
+                         var rating: Int = 3,
                          var userId: Long = 0,
                          var notes: String = "",
                          @Embedded
