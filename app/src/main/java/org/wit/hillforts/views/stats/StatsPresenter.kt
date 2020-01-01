@@ -1,8 +1,7 @@
 package org.wit.hillforts.views.stats
 
-import kotlinx.android.synthetic.main.activity_stats.*
 import org.jetbrains.anko.startActivityForResult
-import org.wit.hillforts.views.hillfortslist.HillfortsListView
+import org.wit.hillforts.views.hillfortslist.FavouritesListView
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.views.BasePresenter
 import org.wit.hillforts.views.BaseView
@@ -20,7 +19,7 @@ class StatsPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun doCancel() {
-    view?.startActivityForResult<HillfortsListView>(0)
+    view?.startActivityForResult<FavouritesListView>(0)
   }
 
 }

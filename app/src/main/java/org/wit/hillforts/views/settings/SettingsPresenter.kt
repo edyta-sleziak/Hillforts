@@ -1,13 +1,9 @@
 package org.wit.hillforts.views.settings
 
-import org.jetbrains.anko.startActivityForResult
-import org.jetbrains.anko.toast
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.views.BasePresenter
 import org.wit.hillforts.views.BaseView
 import org.wit.hillforts.views.VIEW
-import org.wit.hillforts.views.hillfortslist.HillfortsListView
-import org.wit.hillforts.views.login.LoginView
 
 class SettingsPresenter(view: BaseView) : BasePresenter(view) {
 

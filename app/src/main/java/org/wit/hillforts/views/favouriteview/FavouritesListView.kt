@@ -11,19 +11,18 @@ import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.views.BaseView
 
 
-class HillfortsListView : BaseView(), HillfortListener, AnkoLogger {
+class FavouritesListView : BaseView(), FavouriteListener, AnkoLogger {
 
-  lateinit var presenter: HillfortsListPresenter
+  lateinit var presenter: FavouritesListPresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_hillforts_list)
 
-
-    toolbar.title = title
+    toolbar.title = "Your favourites"
     setSupportActionBar(toolbar)
 
-    presenter = initPresenter(HillfortsListPresenter(this)) as HillfortsListPresenter
+    presenter = initPresenter(FavouritesListPresenter(this)) as FavouritesListPresenter
 
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
@@ -31,24 +30,18 @@ class HillfortsListView : BaseView(), HillfortListener, AnkoLogger {
   }
 
   override fun showHillforts(hillforts: List<HillfortModel>) {
-    recyclerView.adapter = HillfortAdapter(hillforts, this)
+    recyclerView.adapter = FavouritesAdapter(hillforts, this)
     recyclerView.adapter?.notifyDataSetChanged()
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-    menuInflater.inflate(R.menu.menu_main, menu)
+    menuInflater.inflate(R.menu.menu_options, menu)
     return super.onCreateOptionsMenu(menu)
   }
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
-      R.id.item_add -> presenter.doAddHillfort()
-      R.id.item_stats -> presenter.doShowStats()
-      R.id.item_settings -> presenter.doShowSettings()
-      R.id.item_map -> presenter.doShowHillfortsMap()
-      R.id.item_favourites -> presenter.doShowFavourites()
-      R.id.item_search -> presenter.doShowSearch()
-      R.id.item_logout -> presenter.doLogout()
+      R.id.item_cancel -> presenter.doCancel()
     }
     return super.onOptionsItemSelected(item)
   }

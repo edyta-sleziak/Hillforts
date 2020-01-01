@@ -29,6 +29,7 @@
       </intent-filter>
     </activity>
     <activity android:name=".views.hillfortslist.HillfortsListView"/>
+    <activity android:name=".views.hillfortslist.FavouritesListView"/>
     <activity android:name=".views.hillfort.HillfortView"/>
     <activity android:name=".views.stats.StatsView"/>
     <activity android:name=".views.settings.SettingsView"/>

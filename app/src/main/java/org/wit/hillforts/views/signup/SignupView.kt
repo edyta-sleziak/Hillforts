@@ -1,15 +1,11 @@
 package org.wit.hillforts.views.signup
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
-import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.UserModel
 import org.wit.hillforts.views.BaseView
-import org.wit.hillforts.views.hillfortslist.HillfortsListView
 
 
 class SignupView : BaseView(), AnkoLogger {

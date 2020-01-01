@@ -13,7 +13,7 @@ import org.wit.hillforts.views.login.LoginView
 import org.wit.hillforts.views.settings.SettingsView
 import org.wit.hillforts.views.stats.StatsView
 
-class HillfortsListPresenter(view: BaseView) : BasePresenter(view) {
+class FavouritesListPresenter(view: BaseView) : BasePresenter(view) {
 
   init {
     app = view.application as MainApp
@@ -21,45 +21,18 @@ class HillfortsListPresenter(view: BaseView) : BasePresenter(view) {
 
   fun loadHillforts() {
     doAsync {
-      val hillforts = app.hillforts.findAll()
+      val hillforts = app.hillforts.findFavouriteHillforts()
       uiThread {
         view?.showHillforts(hillforts)
       }
     }
   }
 
-  fun doAddHillfort() {
-    view?.navigateTo(VIEW.HILLFORT)
-  }
-
   fun doEditHillfort(hillfort: HillfortModel) {
     view?.startActivityForResult(view?.intentFor<HillfortView>()!!.putExtra("hillfort_edit", hillfort), 0)
   }
 
-  fun doShowHillfortsMap() {
-    view?.navigateTo(VIEW.MAPS)
-  }
-
-  fun doShowStats() {
-    view?.navigateTo(VIEW.STATS)
-  }
-
-  fun doShowSettings() {
-    view?.navigateTo(VIEW.SETTINGS)
-  }
-
-  fun doShowSearch() {
-    view?.toast("Selected Search")
-    //view?.navigateTo(VIEW.SEARCH)
-  }
-
-  fun doShowFavourites() {
-    view?.navigateTo(VIEW.FAVOURITES)
-  }
-
-  fun doLogout() {
-    FirebaseAuth.getInstance().signOut()
-    //app.hillforts.clear()
-    view?.navigateTo(VIEW.LOGIN)
+  fun doCancel() {
+    view?.navigateTo(VIEW.LIST)
   }
 }

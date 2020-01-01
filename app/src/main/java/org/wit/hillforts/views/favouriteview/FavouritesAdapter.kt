@@ -12,13 +12,13 @@ import org.wit.hillforts.R
 import org.wit.hillforts.helpers.readImageFromPath
 import org.wit.hillforts.models.HillfortModel
 
-interface HillfortListener {
+interface FavouriteListener {
   fun onHillfortClick(hillfort: HillfortModel)
 }
 
-class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
-                                  private val listener: HillfortListener
-) : RecyclerView.Adapter<HillfortAdapter.MainHolder>() {
+class FavouritesAdapter constructor(private var hillforts: List<HillfortModel>,
+                                  private val listener: FavouriteListener
+) : RecyclerView.Adapter<FavouritesAdapter.MainHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
     return MainHolder(
@@ -39,7 +39,7 @@ class HillfortAdapter constructor(private var hillforts: List<HillfortModel>,
 
   class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(hillfort: HillfortModel, listener: HillfortListener) {
+    fun bind(hillfort: HillfortModel, listener: FavouriteListener) {
       itemView.HillfortName.text = hillfort.name
       itemView.HillfortDescription.text = hillfort.description
       itemView.ratingBar.rating = hillfort.rating.toFloat()
