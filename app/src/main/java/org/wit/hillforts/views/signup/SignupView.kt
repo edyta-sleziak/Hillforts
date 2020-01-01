@@ -4,13 +4,11 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
-import org.wit.hillforts.models.UserModel
 import org.wit.hillforts.views.BaseView
 
 
 class SignupView : BaseView(), AnkoLogger {
 
-  var user = UserModel()
 
   lateinit var presenter: SignupPresenter
 
@@ -21,13 +19,13 @@ class SignupView : BaseView(), AnkoLogger {
     presenter = initPresenter(SignupPresenter(this)) as SignupPresenter
 
     signup.setOnClickListener() {
-      user.email = email.text.toString()
-      user.password = password.text.toString()
+      val email = email.text.toString()
+      val password = password.text.toString()
 
-      if (user.email.isEmpty() || user.password.isEmpty()) {
+      if (email.isEmpty() || password.isEmpty()) {
         toast(R.string.enter_credentials)
       } else {
-        presenter.doSignup(user.email, user.password)
+        presenter.doSignup(email, password)
       }
     }
   }

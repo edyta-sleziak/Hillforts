@@ -7,12 +7,10 @@ import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.activity_settings.toolbarOptions
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
-import org.wit.hillforts.models.UserModel
 import org.wit.hillforts.views.BaseView
 
 class SettingsView : BaseView(), AnkoLogger {
 
-  var user = UserModel()
   lateinit var presenter: SettingsPresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
