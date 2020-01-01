@@ -23,15 +23,19 @@ class SettingsView : BaseView(), AnkoLogger {
 
     presenter = initPresenter(SettingsPresenter(this)) as SettingsPresenter
 
-    change_password.setOnClickListener {
-      if (old_password.text.toString().isEmpty()) {
-        toast("Your old password is required")
+    change_email.setOnClickListener {
+      if (new_email.text.toString().isEmpty()) {
+        toast("New email is required")
       } else {
-        if(new_password.text.toString().isEmpty()) {
-          toast("New password is required")
-        } else {
-          presenter.doChangePassword(new_password.text.toString(), old_password.text.toString())
-        }
+        presenter.doChangeEmail(new_email.text.toString())
+      }
+    }
+
+    change_password.setOnClickListener {
+      if (new_password.text.toString().isEmpty()) {
+        toast("New password is required")
+      } else {
+        presenter.doChangePassword(new_password.text.toString())
       }
     }
   }

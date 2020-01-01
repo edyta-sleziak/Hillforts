@@ -1,5 +1,7 @@
 package org.wit.hillforts.views.settings
 
+import com.google.firebase.auth.FirebaseAuth
+import org.jetbrains.anko.toast
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.views.BasePresenter
 import org.wit.hillforts.views.BaseView
@@ -10,24 +12,21 @@ class SettingsPresenter(view: BaseView) : BasePresenter(view) {
   init {
     app = view.application as MainApp
 
-  }
-
-  fun doChangePassword(new_password: String, old_password: String) {
-//    if(app.users.getLoggedUser()!!.email.isNotEmpty()) {
-//      if (old_password.equals(app.users.getLoggedUser()!!.password)) {
-//        var currentUser = app.users.findOne(app.users.getLoggedUser()!!.email)
-//        currentUser!!.password = new_password
-//        app.users.update(currentUser)
-//        view?.toast("Password changed")
-//        view?.navigateTo(VIEW.LIST)
-//      } else {
-//        view?.toast("Entered old password does not match your current password. Please try again.")
-//      }
-//    } else {
-      view?.navigateTo(VIEW.LOGIN)
- //   }
 
   }
+
+  val user = FirebaseAuth.getInstance().currentUser
+
+  fun doChangePassword(new_password: String) {
+    user?.updatePassword(new_password)
+    view?.toast("Password changed")
+  }
+
+  fun doChangeEmail(new_email: String) {
+    user?.updateEmail(new_email)
+    view?.toast("Email changed")
+  }
+
 
   fun doCancel() {
     view?.navigateTo(VIEW.LIST)

@@ -30,8 +30,9 @@
   <string name="btn_login">Log in</string>
   <string name="btn_signup">Sign up</string>
   <string name="hint_createaccount">Don\'t have an account? \n Register now below</string>
-  <string name="password_change">Change your password</string>
-  <string name="hint_old_password">Enter your old password</string>
+  <string name="password_change">Change your login details</string>
+  <string name="email_change">Change your email</string>
+  <string name="hint_new_email">Enter your new email</string>
   <string name="hint_new_password">Enter your new password</string>
   <string name="toast_incorrectpassword">Password is not correct. Please try again</string>
   <string name="toast_incorrectemail">E-mail address not recognised. Please create an account</string>
