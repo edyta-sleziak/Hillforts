@@ -93,8 +93,9 @@ class HillfortFireStore(val context: Context) : HillfortStore, AnkoLogger {
     return hillforts //todo
   }
 
-  override fun findVisitedHillforts(userId: Long): List<HillfortModel>  {
-    return hillforts //todo
+  override fun findVisitedHillforts(): List<HillfortModel>  {
+    var visitedHillforts: List<HillfortModel> = hillforts.filter { h -> h.visited}
+    return visitedHillforts
   }
 
   fun updateImage(hillfort: HillfortModel) {

@@ -39,6 +39,8 @@
   <string name="totalUsersHillforts">$ Total</string>
   <string name="Visited_hillforts">Visited hillforts: </string>
   <string name="totalVisitedHillforts">$ TotalVisited</string>
+  <string name="totalFavouriteHillforts">$ TotalFavourites</string>
+  <string name="FavouriteHillforts">Hillforts you marked as favourite</string>
   <string name="progress">Your progress:</string>
   <string name="enter_credentials">Please provide e-mail address and password</string>
   <string name="title_activity_hillfrots_maps">Map</string>

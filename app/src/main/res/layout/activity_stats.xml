@@ -62,6 +62,21 @@
           android:text="@string/totalUsersHillforts" />
 
       <TextView
+          android:id="@+id/favouriteHillforts"
+          android:layout_width="match_parent"
+          android:layout_height="45dp"
+          android:layout_margin="8dp"
+          android:text="@string/FavouriteHillforts" />
+
+      <TextView
+          android:id="@+id/totalFavouriteHillforts"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="right"
+          android:layout_margin="8dp"
+          android:text="@string/totalFavouriteHillforts" />
+
+      <TextView
           android:id="@+id/usersVisited"
           android:layout_width="match_parent"
           android:layout_height="45dp"
@@ -88,6 +103,8 @@
           style="?android:attr/progressBarStyleHorizontal"
           android:layout_width="349dp"
           android:layout_height="14dp" />
+
+
 
     </LinearLayout>
   </RelativeLayout>

@@ -29,7 +29,7 @@ class SearchView : BaseView(), SearchListener, AnkoLogger {
 
     presenter = initPresenter(SearchPresenter(this)) as SearchPresenter
     val layoutManager = LinearLayoutManager(this)
-    
+
     searchPhrase.addTextChangedListener(object: TextWatcher {
       override fun afterTextChanged(s: Editable) {}
 

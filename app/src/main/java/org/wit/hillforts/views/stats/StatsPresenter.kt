@@ -1,5 +1,7 @@
 package org.wit.hillforts.views.stats
 
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_stats.*
 import org.jetbrains.anko.startActivityForResult
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.views.BasePresenter
@@ -11,12 +13,15 @@ class StatsPresenter(view: BaseView) : BasePresenter(view) {
 
   init {
     app = view.application as MainApp
-    //var usersHillforts = app.hillforts.findUsersHillforts(app.users.getLoggedUser()!!.id).size
-   // view.progressBar.max = usersHillforts
-   // var visitedHillforts = app.hillforts.findVisitedHillforts(app.users.getLoggedUser()!!.id).size
-    //view.totalUsersHillforts.text = "$usersHillforts"
-    //view.totalVisitedHillforts.text = "$visitedHillforts"
-    //view.progressBar.progress = visitedHillforts
+    val user = FirebaseAuth.getInstance().currentUser
+    var usersHillforts = app.hillforts.findAll().size
+    view.progressBar.max = usersHillforts
+    var visitedHillforts = app.hillforts.findVisitedHillforts().size
+    view.totalUsersHillforts.text = "$usersHillforts"
+    view.totalVisitedHillforts.text = "$visitedHillforts"
+    view.progressBar.progress = visitedHillforts
+    var favouriteHillforts = app.hillforts.findFavouriteHillforts().size
+    view.totalFavouriteHillforts.text = "$favouriteHillforts"
   }
 
   fun doCancel() {
