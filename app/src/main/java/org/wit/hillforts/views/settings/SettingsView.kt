@@ -48,8 +48,5 @@ class SettingsView : BaseView(), AnkoLogger {
     return super.onCreateOptionsMenu(menu)
   }
 
-
-
-
 }
 

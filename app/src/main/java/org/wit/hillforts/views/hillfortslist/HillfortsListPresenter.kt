@@ -49,8 +49,7 @@ class HillfortsListPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun doShowSearch() {
-    view?.toast("Selected Search")
-    //view?.navigateTo(VIEW.SEARCH)
+    view?.navigateTo(VIEW.SEARCH)
   }
 
   fun doShowFavourites() {
@@ -59,7 +58,7 @@ class HillfortsListPresenter(view: BaseView) : BasePresenter(view) {
 
   fun doLogout() {
     FirebaseAuth.getInstance().signOut()
-    //app.hillforts.clear()
+    app.hillforts.clear()
     view?.navigateTo(VIEW.LOGIN)
   }
 }

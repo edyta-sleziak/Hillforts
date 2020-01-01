@@ -1,4 +1,4 @@
-package org.wit.hillforts.views.hillfortslist
+package org.wit.hillforts.views.favouriteview
 
 import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.*

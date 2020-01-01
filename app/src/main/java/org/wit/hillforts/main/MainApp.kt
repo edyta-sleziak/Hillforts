@@ -9,13 +9,9 @@ import org.wit.hillforts.models.firebase.HillfortFireStore
 class MainApp : Application(), AnkoLogger {
 
   lateinit var hillforts: HillfortStore
-  //lateinit var users: UserStore
 
   override fun onCreate() {
     super.onCreate()
-    //hillforts = HillfortStoreRoom(applicationContext)
-    //hillforts = HillfortJSONStore(applicationContext)
-    //users = UserJSONStore(applicationContext)
     hillforts = HillfortFireStore(applicationContext)
     info("Application started")
 

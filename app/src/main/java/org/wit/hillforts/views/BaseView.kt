@@ -4,7 +4,6 @@ import android.content.Intent
 
 import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.AnkoLogger
@@ -12,15 +11,16 @@ import org.jetbrains.anko.AnkoLogger
 import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.models.Location
 import org.wit.hillforts.views.editlocation.EditLocationView
+import org.wit.hillforts.views.favouriteview.FavouritesListView
 import org.wit.hillforts.views.hillfortsmaps.HillfortsMapsView
 import org.wit.hillforts.views.hillfort.HillfortView
-import org.wit.hillforts.views.hillfortslist.FavouritesListView
 import org.wit.hillforts.views.hillfortslist.HillfortsListView
 import org.wit.hillforts.views.login.LoginView
 import org.wit.hillforts.views.settings.SettingsView
 import org.wit.hillforts.views.signup.SignupView
 import org.wit.hillforts.views.splashscreen.SplashScreenView
 import org.wit.hillforts.views.stats.StatsView
+import org.wit.hillforts.views.search.SearchView
 
 val IMAGE_REQUEST = 1
 val LOCATION_REQUEST = 2
@@ -34,7 +34,7 @@ open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
   var basePresenter: BasePresenter? = null
 
   fun navigateTo(view: VIEW, code: Int = 0, key: String = "", value: Parcelable? = null) {
-    var intent = Intent(this, FavouritesListView::class.java)
+    var intent = Intent(this, HillfortsListView::class.java)
     when (view) {
       VIEW.LOCATION -> intent = Intent(this, EditLocationView::class.java)
       VIEW.HILLFORT -> intent = Intent(this, HillfortView::class.java)

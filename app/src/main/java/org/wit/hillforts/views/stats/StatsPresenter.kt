@@ -1,10 +1,11 @@
 package org.wit.hillforts.views.stats
 
 import org.jetbrains.anko.startActivityForResult
-import org.wit.hillforts.views.hillfortslist.FavouritesListView
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.views.BasePresenter
 import org.wit.hillforts.views.BaseView
+import org.wit.hillforts.views.VIEW
+import org.wit.hillforts.views.hillfortslist.HillfortsListView
 
 class StatsPresenter(view: BaseView) : BasePresenter(view) {
 
@@ -19,7 +20,7 @@ class StatsPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun doCancel() {
-    view?.startActivityForResult<FavouritesListView>(0)
+    view?.navigateTo(VIEW.LIST)
   }
 
 }

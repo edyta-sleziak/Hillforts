@@ -1,4 +1,4 @@
-package org.wit.hillforts.views.hillfortslist
+package org.wit.hillforts.views.favouriteview
 
 import android.content.Intent
 import android.os.Bundle
