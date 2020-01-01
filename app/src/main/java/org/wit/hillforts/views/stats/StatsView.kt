@@ -6,13 +6,11 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_settings.toolbarOptions
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
-import org.wit.hillforts.models.UserModel
 import org.wit.hillforts.views.BaseView
 
 class StatsView : BaseView(), AnkoLogger {
 
   lateinit var presenter: StatsPresenter
-  //var user = UserModel()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

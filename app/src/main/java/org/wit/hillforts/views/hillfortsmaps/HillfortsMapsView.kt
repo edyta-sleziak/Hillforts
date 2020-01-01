@@ -10,6 +10,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import org.wit.hillforts.R
 import kotlinx.android.synthetic.main.activity_hillfrots_maps.*
+import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.content_hillfrots_maps.*
 import org.wit.hillforts.helpers.readImageFromPath
 import org.wit.hillforts.main.MainApp
@@ -26,7 +27,7 @@ class HillfortsMapsView : BaseView(), GoogleMap.OnMarkerClickListener {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_hillfrots_maps)
     toolbar.title = title
-    setSupportActionBar(toolbar)
+    setSupportActionBar(toolbarOptions)
 
     presenter = initPresenter(HillfortMapPresenter(this)) as HillfortMapPresenter
 
