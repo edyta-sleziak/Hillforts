@@ -1,6 +1,11 @@
 package org.wit.hillforts.views.hillfort
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -8,6 +13,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.uiThread
+import org.wit.hillforts.helpers.checkLocationPermissions
+import org.wit.hillforts.helpers.createDefaultLocationRequest
+import org.wit.hillforts.helpers.isPermissionGranted
 import org.wit.hillforts.helpers.showImagePicker
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.Location
@@ -23,6 +31,8 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
   val LOCATION_REQUEST = 2
 
   var map: GoogleMap? = null
+  var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
+  val locationRequest = createDefaultLocationRequest()
   var hillfort = HillfortModel()
   var location = Location(52.245696, -7.139102, 15f)
   var edit = false
@@ -33,6 +43,10 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
       edit = true
       hillfort = view.intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
       view.showHillfort(hillfort)
+    } else {
+      if (checkLocationPermissions(view)) {
+        doSetCurrentLocation()
+      }
     }
   }
 
@@ -103,6 +117,36 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
         hillfort.location = location
         locationUpdate(location)
       }
+    }
+  }
+
+  override fun doRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    if (isPermissionGranted(requestCode, grantResults)) {
+      doSetCurrentLocation()
+    } else {
+      locationUpdate(location)
+    }
+  }
+
+  @SuppressLint("MissingPermission")
+  fun doSetCurrentLocation() {
+    locationService.lastLocation.addOnSuccessListener {
+      locationUpdate(Location(it.latitude, it.longitude))
+    }
+  }
+
+  @SuppressLint("MissingPermission")
+  fun doResartLocationUpdates() {
+    var locationCallback = object : LocationCallback() {
+      override fun onLocationResult(locationResult: LocationResult?) {
+        if (locationResult != null && locationResult.locations != null) {
+          val l = locationResult.locations.last()
+          locationUpdate(Location(l.latitude, l.longitude))
+        }
+      }
+    }
+    if (!edit) {
+      locationService.requestLocationUpdates(locationRequest, locationCallback, null)
     }
   }
 }

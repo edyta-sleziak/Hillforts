@@ -2,21 +2,16 @@ package org.wit.hillforts.views.hillfort
 
 import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Button
-import android.widget.RatingBar
 import com.bumptech.glide.Glide
+import com.google.android.gms.maps.GoogleMap
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortDescription
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortName
-import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
-import org.wit.hillforts.helpers.readImageFromPath
 import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.models.Location
@@ -26,6 +21,7 @@ import java.util.*
 class HillfortView : BaseView(), AnkoLogger {
 
   lateinit var presenter: HillfortPresenter
+  lateinit var map: GoogleMap
   var hillfort = HillfortModel()
 
   lateinit var app: MainApp
@@ -58,8 +54,15 @@ class HillfortView : BaseView(), AnkoLogger {
       datePickerDialog.show()
     }
 
-    hillfortLocation.setOnClickListener {
-      presenter.doSetLocation()
+    hillfortMap.getMapAsync {
+      presenter.doConfigureMap(it)
+      it.setOnMapClickListener { presenter.doSetLocation() }
+    }
+
+    hillfortMap.onCreate(savedInstanceState)
+    hillfortMap.getMapAsync {
+      map = it
+      presenter.doConfigureMap(map)
     }
 
   }
@@ -76,11 +79,13 @@ class HillfortView : BaseView(), AnkoLogger {
     if(hillfort.image != null) {
       chooseImage.setText(R.string.button_updateImage)
     }
+    lat.setText("lat: %.6f".format(hillfort.location.lat))
+    lat.setText("lng: %.6f".format(hillfort.location.lng))
   }
 
   override fun showLocation(location: Location) {
-//    lat.setText("%.6f".format(latitude))
-//    lng.setText("%.6f".format(longitude))
+    lat.setText("lat: %.6f".format(location.lat))
+    lat.setText("lng: %.6f".format(location.lng))
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -121,6 +126,32 @@ class HillfortView : BaseView(), AnkoLogger {
     if(data != null) {
       presenter.doActivityResult(requestCode, resultCode, data)
     }
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    hillfortMap.onDestroy()
+  }
+
+  override fun onLowMemory() {
+    super.onLowMemory()
+    hillfortMap.onLowMemory()
+  }
+
+  override fun onPause() {
+    super.onPause()
+    hillfortMap.onPause()
+  }
+
+  override fun onResume() {
+    super.onResume()
+    hillfortMap.onResume()
+    presenter.doResartLocationUpdates()
+  }
+
+  override fun onSaveInstanceState(outState: Bundle) {
+    super.onSaveInstanceState(outState)
+    hillfortMap.onSaveInstanceState(outState)
   }
 
 
