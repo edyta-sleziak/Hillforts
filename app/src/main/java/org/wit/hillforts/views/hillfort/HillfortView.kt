@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortDescription
 import kotlinx.android.synthetic.main.activity_hillfort.HillfortName
@@ -16,7 +17,9 @@ import org.wit.hillforts.main.MainApp
 import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.models.Location
 import org.wit.hillforts.views.BaseView
+import org.wit.hillforts.views.VIEW
 import java.util.*
+
 
 class HillfortView : BaseView(), AnkoLogger {
 
@@ -25,6 +28,24 @@ class HillfortView : BaseView(), AnkoLogger {
   var hillfort = HillfortModel()
 
   lateinit var app: MainApp
+
+  private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    when (item.itemId) {
+      R.id.navigation_favourites -> {
+        presenter.view?.navigateTo(VIEW.FAVOURITES)
+        return@OnNavigationItemSelectedListener true
+      }
+      R.id.navigation_home -> {
+        presenter.view?.navigateTo(VIEW.LIST)
+        return@OnNavigationItemSelectedListener true
+      }
+      R.id.navigation_map -> {
+        presenter.view?.navigateTo(VIEW.MAPS)
+        return@OnNavigationItemSelectedListener true
+      }
+    }
+    false
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -35,11 +56,13 @@ class HillfortView : BaseView(), AnkoLogger {
       info ("Select image")
     }
     presenter = initPresenter(HillfortPresenter(this)) as HillfortPresenter
+    val bottomNavigation: BottomNavigationView = findViewById(R.id.bottomNavigation)
 
     val datepicker = Calendar.getInstance()
     val year = datepicker.get(Calendar.YEAR)
     val month = datepicker.get(Calendar.MONTH)
     val day = datepicker.get(Calendar.DAY_OF_MONTH )
+
 
     app = application as MainApp
 
@@ -65,6 +88,8 @@ class HillfortView : BaseView(), AnkoLogger {
       presenter.doConfigureMap(map)
     }
 
+    bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
   }
 
   override fun showHillfort(hillfort: HillfortModel) {
@@ -79,13 +104,13 @@ class HillfortView : BaseView(), AnkoLogger {
     if(hillfort.image != null) {
       chooseImage.setText(R.string.button_updateImage)
     }
-    lat.setText("lat: %.6f".format(hillfort.location.lat))
-    lat.setText("lng: %.6f".format(hillfort.location.lng))
+    lat.setText("%.4f".format(hillfort.location.lat))
+    lng.setText("%.4f".format(hillfort.location.lng))
   }
 
   override fun showLocation(location: Location) {
-    lat.setText("lat: %.6f".format(location.lat))
-    lat.setText("lng: %.6f".format(location.lng))
+    lat.setText("%.4f".format(location.lat))
+    lng.setText("%.4f".format(location.lng))
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
