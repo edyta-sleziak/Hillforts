@@ -11,11 +11,11 @@
 
   <com.google.android.gms.maps.MapView
       android:id="@+id/mapView"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:layout_marginStart="8dp"
+      android:layout_width="396dp"
+      android:layout_height="424dp"
+      android:layout_marginStart="16dp"
       android:layout_marginTop="8dp"
-      android:layout_marginEnd="8dp"
+      android:layout_marginEnd="16dp"
       android:layout_marginBottom="8dp"
       app:layout_constraintBottom_toTopOf="@+id/cardView"
       app:layout_constraintEnd_toEndOf="parent"
@@ -25,8 +25,8 @@
 
   <androidx.cardview.widget.CardView
       android:id="@+id/cardView"
-      android:layout_width="0dp"
-      android:layout_height="112dp"
+      android:layout_width="350dp"
+      android:layout_height="180dp"
       android:layout_marginStart="16dp"
       android:layout_marginTop="8dp"
       android:layout_marginEnd="16dp"
@@ -37,14 +37,14 @@
       app:layout_constraintTop_toBottomOf="@+id/mapView">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="103dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
       <TextView
           android:id="@+id/currentName"
-          android:layout_width="0dp"
-          android:layout_height="0dp"
-          android:layout_marginStart="2dp"
+          android:layout_width="130dp"
+          android:layout_height="30dp"
+          android:layout_marginStart="8dp"
           android:layout_marginTop="2dp"
           android:layout_marginEnd="8dp"
           android:layout_marginBottom="2dp"
@@ -56,22 +56,22 @@
 
       <TextView
           android:id="@+id/currentDescription"
-          android:layout_width="0dp"
-          android:layout_height="0dp"
-          android:layout_marginStart="2dp"
+          android:layout_width="130dp"
+          android:layout_height="30dp"
+          android:layout_marginStart="8dp"
           android:layout_marginTop="2dp"
           android:layout_marginEnd="8dp"
           android:layout_marginBottom="2dp"
           android:text="@string/hillfort_description_placeholder"
-          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintBottom_toTopOf="@id/ratingBarMap"
           app:layout_constraintEnd_toStartOf="@+id/currentImage"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/currentName" />
 
       <ImageView
           android:id="@+id/currentImage"
-          android:layout_width="0dp"
-          android:layout_height="0dp"
+          android:layout_width="178dp"
+          android:layout_height="113dp"
           android:layout_marginTop="3dp"
           android:layout_marginEnd="3dp"
           android:layout_marginBottom="3dp"
@@ -82,7 +82,35 @@
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toEndOf="@+id/currentName"
           app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.18"
           tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+      <RatingBar
+          android:id="@+id/ratingBarMap"
+          android:layout_width="237dp"
+          android:layout_height="52dp"
+          android:isIndicator="true"
+          android:numStars="5"
+          android:scaleX="0.6"
+          android:scaleY="0.6"
+          android:stepSize="1"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/currentImage"
+          app:layout_constraintVertical_bias="1.0" />
+
+      <ImageView
+          android:id="@+id/favourite"
+          android:layout_width="42dp"
+          android:layout_height="28dp"
+          android:visibility="gone"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="@+id/currentImage"
+          app:layout_constraintStart_toEndOf="@+id/ratingBarMap"
+          app:layout_constraintTop_toBottomOf="@+id/currentImage"
+          app:srcCompat="@drawable/ic_favorite_black_24dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.cardview.widget.CardView>
 

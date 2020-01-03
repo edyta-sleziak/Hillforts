@@ -36,8 +36,20 @@
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recyclerViewSearch"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_height="518dp"
       android:scrollbars="vertical"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+  </androidx.recyclerview.widget.RecyclerView>
+
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+      android:id="@+id/bottomNavigation"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_gravity="bottom"
+      android:background="@color/colorPrimary"
+      app:itemIconTint="@color/colorAccent"
+      app:itemTextColor="@color/colorPrimaryDark"
+      app:menu="@menu/menu_bottomnavigation" />
 
 </LinearLayout>

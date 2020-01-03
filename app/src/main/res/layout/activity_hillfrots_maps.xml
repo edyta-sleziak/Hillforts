@@ -7,6 +7,7 @@
     tools:context=".views.hillfortsmaps.HillfortsMapsView">
 
   <com.google.android.material.appbar.AppBarLayout
+      android:id="@+id/appBarLayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:background="@color/colorAccent"
@@ -15,13 +16,29 @@
       app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarOptions"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorAccent" />
-
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/colorPrimaryDark" />
   </com.google.android.material.appbar.AppBarLayout>
 
   <include layout="@layout/content_hillfrots_maps" />
+
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@color/colorAccent"
+        app:itemTextColor="@color/colorPrimaryDark"
+        app:menu="@menu/menu_bottomnavigation" />
+
+  </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

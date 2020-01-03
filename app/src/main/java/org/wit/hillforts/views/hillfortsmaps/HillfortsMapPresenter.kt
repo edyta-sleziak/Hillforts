@@ -10,6 +10,7 @@ import org.jetbrains.anko.uiThread
 import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.views.BasePresenter
 import org.wit.hillforts.views.BaseView
+import org.wit.hillforts.views.VIEW
 
 class HillfortMapPresenter(view: BaseView) : BasePresenter(view) {
 
@@ -24,9 +25,9 @@ class HillfortMapPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun doMarkerSelected(marker: Marker) {
-    val tag = marker.tag as Long
+    val tag = marker.tag as HillfortModel
     doAsync {
-      val hillfort = marker.tag as HillfortModel
+      val hillfort = tag
       uiThread {
         if (hillfort != null) view?.showHillfort(hillfort)
       }
@@ -40,5 +41,9 @@ class HillfortMapPresenter(view: BaseView) : BasePresenter(view) {
         view?.showHillforts(hillforts)
       }
     }
+  }
+
+  fun doCancel() {
+    view?.navigateTo(VIEW.LIST)
   }
 }

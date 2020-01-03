@@ -7,11 +7,13 @@ import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
 import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.views.BaseView
+import org.wit.hillforts.views.VIEW
 
 
 class SearchView : BaseView(), SearchListener, AnkoLogger {
@@ -19,6 +21,24 @@ class SearchView : BaseView(), SearchListener, AnkoLogger {
   lateinit var presenter: SearchPresenter
 
   internal var textlength = 0
+
+  private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    when (item.itemId) {
+      R.id.navigation_favourites -> {
+        presenter.view?.navigateTo(VIEW.FAVOURITES)
+        return@OnNavigationItemSelectedListener true
+      }
+      R.id.navigation_home -> {
+        presenter.view?.navigateTo(VIEW.LIST)
+        return@OnNavigationItemSelectedListener true
+      }
+      R.id.navigation_map -> {
+        presenter.view?.navigateTo(VIEW.MAPS)
+        return@OnNavigationItemSelectedListener true
+      }
+    }
+    false
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -29,6 +49,9 @@ class SearchView : BaseView(), SearchListener, AnkoLogger {
 
     presenter = initPresenter(SearchPresenter(this)) as SearchPresenter
     val layoutManager = LinearLayoutManager(this)
+
+    val bottomNavigation: BottomNavigationView = findViewById(R.id.bottomNavigation)
+    bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
     searchPhrase.addTextChangedListener(object: TextWatcher {
       override fun afterTextChanged(s: Editable) {}

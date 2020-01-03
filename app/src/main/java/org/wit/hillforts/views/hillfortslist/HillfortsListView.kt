@@ -4,16 +4,36 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_hillforts_list.*
 import org.jetbrains.anko.AnkoLogger
 import org.wit.hillforts.R
 import org.wit.hillforts.models.HillfortModel
 import org.wit.hillforts.views.BaseView
+import org.wit.hillforts.views.VIEW
 
 
 class HillfortsListView : BaseView(), HillfortListener, AnkoLogger {
 
   lateinit var presenter: HillfortsListPresenter
+
+  private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    when (item.itemId) {
+      R.id.navigation_favourites -> {
+        presenter.view?.navigateTo(VIEW.FAVOURITES)
+        return@OnNavigationItemSelectedListener true
+      }
+      R.id.navigation_home -> {
+        presenter.view?.navigateTo(VIEW.LIST)
+        return@OnNavigationItemSelectedListener true
+      }
+      R.id.navigation_map -> {
+        presenter.view?.navigateTo(VIEW.MAPS)
+        return@OnNavigationItemSelectedListener true
+      }
+    }
+    false
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -28,6 +48,9 @@ class HillfortsListView : BaseView(), HillfortListener, AnkoLogger {
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
     presenter.loadHillforts()
+
+    val bottomNavigation: BottomNavigationView = findViewById(R.id.bottomNavigation)
+    bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
   }
 
   override fun showHillforts(hillforts: List<HillfortModel>) {

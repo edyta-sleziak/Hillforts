@@ -30,82 +30,128 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingHorizontal="30dp">
+        android:layout_height="match_parent">
 
       <TextView
-          android:layout_width="match_parent"
+          android:id="@+id/textView2"
+          android:layout_width="wrap_content"
           android:layout_height="45dp"
-          android:layout_margin="8dp"
           android:layout_gravity="center"
-          android:textSize="28sp"
+          android:layout_marginStart="32dp"
+          android:layout_marginTop="100dp"
           android:text="@string/drawer_stats"
-          android:textColor="@android:color/black" />
+          android:textColor="@android:color/black"
+          android:textSize="28sp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
 
       <TextView
           android:id="@+id/usersHillforts"
-          android:layout_width="match_parent"
-          android:layout_height="45dp"
-          android:layout_margin="8dp"
-          android:text="@string/Users_hillforts" />
+          android:layout_width="248dp"
+          android:layout_height="48dp"
+          android:layout_margin="20dp"
+          android:layout_marginStart="16dp"
+          android:text="@string/Users_hillforts"
+          app:layout_constraintBottom_toTopOf="@+id/favouriteHillforts"
+          app:layout_constraintEnd_toStartOf="@+id/totalUsersHillforts"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
       <TextView
           android:id="@+id/totalUsersHillforts"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_gravity="right"
-          android:layout_margin="8dp"
-          android:text="@string/totalUsersHillforts" />
+          android:layout_marginStart="24dp"
+          android:text="@string/totalUsersHillforts"
+          app:layout_constraintBottom_toTopOf="@+id/totalFavouriteHillforts"
+          app:layout_constraintStart_toEndOf="@+id/usersHillforts"
+          app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
       <TextView
           android:id="@+id/favouriteHillforts"
-          android:layout_width="match_parent"
-          android:layout_height="45dp"
-          android:layout_margin="8dp"
-          android:text="@string/FavouriteHillforts" />
+          android:layout_width="248dp"
+          android:layout_height="48dp"
+          android:layout_margin="20dp"
+          android:layout_marginStart="16dp"
+          android:text="@string/FavouriteHillforts"
+          app:layout_constraintBottom_toTopOf="@+id/usersVisited"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/usersHillforts" />
 
       <TextView
           android:id="@+id/totalFavouriteHillforts"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_gravity="right"
-          android:layout_margin="8dp"
-          android:text="@string/totalFavouriteHillforts" />
+          android:layout_marginStart="24dp"
+          android:text="@string/totalFavouriteHillforts"
+          app:layout_constraintBottom_toTopOf="@+id/totalVisitedHillforts"
+          app:layout_constraintStart_toEndOf="@+id/favouriteHillforts"
+          app:layout_constraintTop_toBottomOf="@+id/totalUsersHillforts" />
 
       <TextView
           android:id="@+id/usersVisited"
-          android:layout_width="match_parent"
-          android:layout_height="45dp"
-          android:layout_margin="8dp"
-          android:text="@string/Visited_hillforts" />
+          android:layout_width="248dp"
+          android:layout_height="48dp"
+          android:layout_margin="20dp"
+          android:text="@string/Visited_hillforts"
+          app:layout_constraintBottom_toTopOf="@+id/progress"
+          app:layout_constraintEnd_toStartOf="@+id/totalVisitedHillforts"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/favouriteHillforts" />
 
       <TextView
-        android:id="@+id/totalVisitedHillforts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_margin="8dp"
-        android:text="@string/totalVisitedHillforts" />
+          android:id="@+id/totalVisitedHillforts"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:text="@string/totalVisitedHillforts"
+          app:layout_constraintBottom_toTopOf="@+id/progress"
+          app:layout_constraintStart_toEndOf="@+id/usersVisited"
+          app:layout_constraintTop_toBottomOf="@+id/totalFavouriteHillforts" />
 
       <TextView
           android:id="@+id/progress"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_margin="8dp"
-          android:text="@string/progress" />
+          android:layout_margin="20dp"
+          android:text="@string/progress"
+          app:layout_constraintBottom_toTopOf="@+id/progressBar"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/usersVisited" />
 
       <ProgressBar
           android:id="@+id/progressBar"
           style="?android:attr/progressBarStyleHorizontal"
           android:layout_width="349dp"
-          android:layout_height="14dp" />
+          android:layout_height="14dp"
+          android:layout_marginBottom="100dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/progress" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    </LinearLayout>
   </RelativeLayout>
+
+  <FrameLayout
+      android:id="@+id/frameLayout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@color/colorAccent"
+        app:itemTextColor="@color/colorPrimaryDark"
+        app:menu="@menu/menu_bottomnavigation" />
+
+  </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

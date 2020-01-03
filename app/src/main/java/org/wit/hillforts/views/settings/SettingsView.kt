@@ -3,15 +3,35 @@ package org.wit.hillforts.views.settings
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.activity_settings.toolbarOptions
 import org.jetbrains.anko.*
 import org.wit.hillforts.R
 import org.wit.hillforts.views.BaseView
+import org.wit.hillforts.views.VIEW
 
 class SettingsView : BaseView(), AnkoLogger {
 
   lateinit var presenter: SettingsPresenter
+
+  private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    when (item.itemId) {
+      R.id.navigation_favourites -> {
+        presenter.view?.navigateTo(VIEW.FAVOURITES)
+        return@OnNavigationItemSelectedListener true
+      }
+      R.id.navigation_home -> {
+        presenter.view?.navigateTo(VIEW.LIST)
+        return@OnNavigationItemSelectedListener true
+      }
+      R.id.navigation_map -> {
+        presenter.view?.navigateTo(VIEW.MAPS)
+        return@OnNavigationItemSelectedListener true
+      }
+    }
+    false
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -28,6 +48,9 @@ class SettingsView : BaseView(), AnkoLogger {
         presenter.doChangeEmail(new_email.text.toString())
       }
     }
+
+    val bottomNavigation: BottomNavigationView = findViewById(R.id.bottomNavigation)
+    bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
     change_password.setOnClickListener {
       if (new_password.text.toString().isEmpty()) {
